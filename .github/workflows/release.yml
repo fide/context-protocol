@@ -11,7 +11,7 @@ permissions:
   deployments: write
 
 jobs:
-  publish-fcp:
+  publish-context-protocol:
     permissions:
       contents: write
       id-token: write
