@@ -1,0 +1,50 @@
+---
+title: Actions
+description: Action statement pattern rules.
+---
+
+Action statements describe an action taken by an actor. In this pattern, the predicate names the action and the object identifies what the action is directed at. The statement is used to express something done by an actor, not just a property value or a general entity-to-entity relationship.
+
+- SHOULD use this pattern when the goal of the statement is to express something done by an actor.
+
+## Action Statement Parts [#action-statement-parts]
+
+**Subject:** The actor taking the action.
+
+- MUST be an [Agent](/vocabulary/definitions#agents).
+
+**Predicate:** The action being described.
+
+**Object:** The entity the action is directed at.
+
+- SHOULD identify the entity the action is directed at, affected by, or recorded against.
+
+## Examples [#examples]
+
+Action statements describe what an actor did to, for, or with another entity.
+
+```text
+Organization | schema:published | CreativeWork
+```
+
+```text
+Person | schema:created | CreativeWork
+```
+
+```text
+SoftwareAgent | prov:generated | CreativeWork
+```
+
+## Actions vs Links [#actions-vs-links]
+
+Use Actions when the statement is expressing something done by an actor.
+
+```text
+Organization | schema:published | CreativeWork
+```
+
+Use [Links](/context-protocol/specification/links) when the statement is expressing a relationship between entities rather than an action performed by an actor.
+
+```text
+CreativeWork | schema:publisher | Organization
+```

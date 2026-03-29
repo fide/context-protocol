@@ -1,0 +1,12 @@
+---
+title: "expandPredicateReferenceIdentifier"
+description: "Expand a prefixed predicate token (e.g. `schema:name`) to a full IRI.
+
+If `referenceIdentifier` is already an absolute URL, it is returned unchanged.
+If `referenceIdentifier` contains a prefix not found in the configured map, throws."
+full: true
+---
+
+import { SDKFunctionPageInteractive } from '@/components/sdk-layout/sdk-function-page-interactive';
+
+<SDKFunctionPageInteractive data={{"name":"expandPredicateReferenceIdentifier","description":"Expand a prefixed predicate token (e.g. `schema:name`) to a full IRI.\n\nIf `referenceIdentifier` is already an absolute URL, it is returned unchanged.\nIf `referenceIdentifier` contains a prefix not found in the configured map, throws.","section":"Predicate Vocabulary","signatures":[{"description":"Expand a prefixed predicate token (e.g. `schema:name`) to a full IRI.\n\nIf `referenceIdentifier` is already an absolute URL, it is returned unchanged.\nIf `referenceIdentifier` contains a prefix not found in the configured map, throws.","parameters":[{"name":"referenceIdentifier","type":"string","optional":false,"description":"Predicate reference identifier token."},{"name":"options","type":"ExpandPredicateReferenceIdentifierOptions","optional":true,"description":"Prefix override options."}],"returnType":"string","returnDescription":"Expanded full IRI or original absolute URL.","infoCallout":{"title":"Node Runtime Required","body":"This function requires a Node.js runtime and is disabled in the browser docs preview."},"referencedTypes":[{"name":"ExpandPredicateReferenceIdentifierOptions","description":"Predicate vocabulary shorthand helper types.","type":"ExpandPredicateReferenceIdentifierOptions","entries":{"prefixes":{"description":"Additional/override prefix mappings.","type":"Record<string, string>","required":false}}}]}],"constants":[],"referencedTypes":[{"name":"ExpandPredicateReferenceIdentifierOptions","description":"Predicate vocabulary shorthand helper types.","type":"ExpandPredicateReferenceIdentifierOptions","entries":{"prefixes":{"description":"Additional/override prefix mappings.","type":"Record<string, string>","required":false}}}]}} />

@@ -1,0 +1,61 @@
+---
+title: Quickstart
+description: Build and validate your first Fide Context Protocol statement.
+---
+
+## Install
+
+```bash
+pnpm add @fide-work/context-protocol
+```
+
+## Build A Statement
+
+```ts
+import { buildStatement } from "@fide-work/context-protocol";
+
+const statement = await buildStatement({
+  subject: {
+    entityType: "Person",
+    referenceType: "NetworkResource",
+    referenceIdentifier: "https://orcid.org/0000-0002-1825-0097",
+  },
+  predicate: {
+    referenceIdentifier: "https://schema.org/name",
+  },
+  object: {
+    entityType: "TextLiteral",
+    referenceType: "TextLiteral",
+    referenceIdentifier: "Alice Example",
+  },
+});
+```
+
+## What You Get
+
+The SDK derives deterministic Fide IDs for:
+
+- the subject
+- the predicate
+- the object
+- the statement itself
+
+It also returns a complete FCP statement object with the required identifiers and reference identifiers.
+
+## Validate The Result
+
+Use the SDK when you need to enforce FCP structure and predicate policy before writing statements to storage or passing them to downstream graph systems.
+
+The most common errors are:
+
+- non-canonical predicate identifiers
+- invalid entity-type/reference-type combinations
+- missing or malformed reference identifiers
+
+## Next Steps
+
+- Read [Specification Overview](/context-protocol/specification).
+- Review [Statements](/context-protocol/specification/statements).
+- Review [Fide ID](/id).
+- Explore [Fide Vocabulary](/vocabulary).
+- Use the [JavaScript SDK Reference](/context-protocol/sdk/javascript).

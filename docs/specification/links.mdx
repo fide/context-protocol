@@ -1,0 +1,48 @@
+---
+title: Links
+description: Link statement pattern rules.
+---
+
+Link statements describe how one entity is connected to another. In this pattern, the predicate names the relationship and the object identifies the related entity. The object is used as another entity in the relationship, not as the value of a property.
+
+- SHOULD use this pattern when the goal of the statement is to relate the subject to another entity as an entity.
+
+## Link Statement Parts [#link-statement-parts]
+
+**Subject:** The entity the link starts from.
+
+**Predicate:** The relationship being described.
+
+**Object:** The entity linked to the subject.
+
+- MUST be another non-[Literal](/vocabulary/definitions#literals) [Entity Type](/vocabulary/definitions).
+
+## Examples [#examples]
+
+Link statements describe relationships between entities.
+
+```text
+Person | schema:affiliation | Organization
+```
+
+```text
+CreativeWork | schema:creator | Person
+```
+
+```text
+Event | schema:location | Place
+```
+
+## Links vs Attributes [#links-vs-attributes]
+
+Use Links when the object is another entity being related as an entity.
+
+```text
+Person | schema:affiliation | Organization
+```
+
+Use [Attributes](/context-protocol/specification/attributes) when the object functions as the value of a property.
+
+```text
+Person | schema:name | "Alice"
+```

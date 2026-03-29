@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fide.work/context-protocol/v0/predicate-prefixes.schema.json",
+  "title": "Fide Context Protocol Predicate Prefixes v0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "namespaceUrl",
+    "specVersion",
+    "specDate",
+    "prefixes"
+  ],
+  "properties": {
+    "namespaceUrl": {
+      "type": "string",
+      "format": "uri",
+      "minLength": 1
+    },
+    "specVersion": {
+      "type": "string",
+      "pattern": "^[0-9]+$"
+    },
+    "specDate": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+    },
+    "prefixes": {
+      "type": "object",
+      "minProperties": 1,
+      "patternProperties": {
+        "^[a-z][a-z0-9]*$": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https://.+[\\\\/#]$"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

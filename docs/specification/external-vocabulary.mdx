@@ -1,0 +1,110 @@
+---
+title: External Vocabulary
+description: Standards and shorthand conventions used across FCP.
+---
+
+import { Callout } from 'fumadocs-ui/components/callout';
+
+The following standards are highlighted because they are widely adopted across web, semantic, and linked-data systems. This list is not exhaustive; any external vocabulary standard may be used when it provides suitable predicate terms and complies with FCP requirements and restrictions.
+
+<Callout title="Shorthand">
+  Documentation and SDK implementations may use prefixed shorthand such as <code>schema:name</code>, which expands to the [Fide ID Reference Identifier](/id/specification/syntax#reference-identifier) compliant <code>https://schema.org/name</code>.
+</Callout>
+
+### Schema.org [#schema]
+
+[Schema.org](https://schema.org/) defines widely used web vocabulary for names, descriptions, relationships, and general-purpose properties.
+
+<details>
+<summary>SHOULD use for broadly adopted descriptive and relational terms.</summary>
+
+- Valid: [`schema:name`](https://schema.org/name)
+- Valid: [`schema:location`](https://schema.org/location)
+- Valid: [`schema:publisher`](https://schema.org/publisher)
+</details>
+
+### RDF [#rdf]
+
+The [RDF 1.1 Concepts namespace](https://www.w3.org/TR/rdf11-concepts/) defines foundational RDF constructs used in graph-based data models.
+
+<details>
+<summary>SHOULD use for foundational constructs.</summary>
+
+- Valid: [`rdf:type`](https://www.w3.org/1999/02/22-rdf-syntax-ns#type)
+- Valid: [`rdf:Statement`](https://www.w3.org/1999/02/22-rdf-syntax-ns#Statement)
+</details>
+
+### RDFS [#rdfs]
+
+The [RDF Schema namespace](https://www.w3.org/TR/rdf-schema/) defines schema-level vocabulary for labels, comments, and other descriptive metadata.
+
+<details>
+<summary>SHOULD use for schema-level descriptive terms.</summary>
+
+- Valid: [`rdfs:label`](https://www.w3.org/2000/01/rdf-schema#label)
+- Valid: [`rdfs:comment`](https://www.w3.org/2000/01/rdf-schema#comment)
+</details>
+
+### XSD [#xsd]
+
+[XML Schema Datatypes](https://www.w3.org/TR/xmlschema11-2/) defines common literal datatype terms used with typed values.
+
+<details>
+<summary>SHOULD use for datatype terms.</summary>
+
+- Valid: [`xsd:string`](https://www.w3.org/2001/XMLSchema#string)
+- Valid: [`xsd:date`](https://www.w3.org/2001/XMLSchema#date)
+- Valid: [`xsd:boolean`](https://www.w3.org/2001/XMLSchema#boolean)
+</details>
+
+### ORG [#org]
+
+The [W3C Organization Ontology](https://www.w3.org/TR/vocab-org/) defines vocabulary for organization structure and related concepts.
+
+<details>
+<summary>SHOULD use for organization concepts.</summary>
+
+- Valid: [`org:Organization`](https://www.w3.org/ns/org#Organization)
+</details>
+
+### PROV [#prov]
+
+The [PROV Ontology](https://www.w3.org/TR/prov-o/) defines provenance vocabulary for sources, derivation, generation, and related process semantics.
+
+<details>
+<summary>SHOULD use for provenance terms.</summary>
+
+- Valid: [`prov:generated`](https://www.w3.org/ns/prov#generated)
+- Valid: [`prov:wasDerivedFrom`](https://www.w3.org/ns/prov#wasDerivedFrom)
+</details>
+
+### SEC [#sec]
+
+The [W3C Security Vocabulary](https://w3id.org/security/spec/) defines vocabulary for security and key material.
+
+<details>
+<summary>SHOULD use for security-related terms.</summary>
+
+- Valid: [`sec:PublicKey`](https://w3id.org/security#PublicKey)
+</details>
+
+### OWL [#owl]
+
+The [OWL 2 namespace](https://www.w3.org/TR/owl2-syntax/) defines ontology-level semantics used for stronger semantic assertions.
+
+<details>
+<summary>SHOULD use for ontology-level semantics.</summary>
+
+- Valid: [`owl:sameAs`](https://www.w3.org/2002/07/owl#sameAs)
+</details>
+
+### SKOS [#skos]
+
+The [SKOS Reference](https://www.w3.org/TR/skos-reference/) defines controlled vocabulary and concept-system semantics.
+
+<details>
+<summary>SHOULD use for controlled vocabulary terms.</summary>
+
+- Valid: [`skos:Concept`](https://www.w3.org/2004/02/skos/core#Concept)
+- Valid: [`skos:prefLabel`](https://www.w3.org/2004/02/skos/core#prefLabel)
+</details>

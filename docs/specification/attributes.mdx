@@ -1,0 +1,46 @@
+---
+title: Attributes
+description: Attribute statement pattern rules.
+---
+
+Attribute statements describe an entity by attaching values to named properties. In this pattern, the predicate names the property and the object carries its value. The object is used as a value, not as a peer entity in a relationship.
+
+- SHOULD use this pattern when the goal of the statement is to describe an entity by attaching a value to a named property.
+
+## Attribute Statement Parts [#attribute-statement-parts]
+
+**Subject:** The entity being described.
+
+**Predicate:** The property term that defines what is being said about the subject.
+
+**Object:** The value of that property.
+
+## Examples [#examples]
+
+Attribute statements can describe names, dates, labels, measurements, and other values carried by an entity.
+
+```text
+Person | schema:name | "Alice"
+```
+
+```text
+Concept | skos:prefLabel | "Person"
+```
+
+```text
+CreativeWork | rdfs:label | "Quarterly Letter"
+```
+
+## Attributes vs Links [#attributes-vs-links]
+
+Use Attributes when the object functions as the value of a property.
+
+```text
+Person | schema:name | "Alice"
+```
+
+Use [Links](/context-protocol/specification/links) when the object is another entity being related as an entity.
+
+```text
+Person | schema:affiliation | Organization
+```

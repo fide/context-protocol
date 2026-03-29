@@ -1,0 +1,64 @@
+---
+title: Statements
+description: Statement structure and required fields for FCP.
+---
+
+Statements are how entity relationships are described. You can think of them as three-part [Fide ID](/id) anchored sentences that communicate meaning in a machine-readable, comparable way across systems.
+
+<Callout title="Statement Entity Type">
+  See [Statement Entity Type](/vocabulary/definitions/statement) for the Statement entity definition and identifier rules.
+</Callout>
+
+## Subject [#subject]
+
+The entity that the statement is about.
+
+## Predicate [#predicate]
+
+The relationship [`Concept`](/vocabulary/definitions/concept) that gives the statement its meaning.
+
+### Requirements [#requirements]
+
+- MUST use the [Entity Type](/id/specification/syntax#entity-type) [`Concept`](/vocabulary/definitions/concept).
+- MUST use the [Reference Type](/id/specification/syntax#reference-type) [`NetworkResource`](/vocabulary/definitions/network-resource).
+
+### Restrictions [#restrictions]
+
+- MUST NOT use [Reference Identifier](/id/specification/syntax#reference-identifier) `schema:identifier`. The [Fide ID](/id/specification) already encodes the entity identifier.
+- MUST NOT use [Reference Identifier](/id/specification/syntax#reference-identifier) `schema:sameAs`. Use `owl:sameAs` for strict entity equality statements.
+
+## Object [#object]
+
+The entity related to the subject by the predicate.
+
+---
+
+## Statement Restrictions [#statement-restrictions]
+
+<details>
+<summary>MUST NOT use a Statement with <a href="/context-protocol/specification/statements#predicate">Predicate</a> <code>rdf:type</code> or <code>schema:additionalType</code> with an <a href="/context-protocol/specification/statements#object">Object</a> type already directly encoded by the <a href="/context-protocol/specification/statements#subject">Subject</a> <a href="/id/specification/syntax#entity-type">Entity Type</a>.</summary>
+
+| Subject Entity Type | Object Type Already Encoded |
+| :--- | :--- |
+| `Statement` | `rdf:Statement` |
+| `Person` | `schema:Person` |
+| `Organization` | `org:Organization` |
+| `CreativeWork` | `schema:CreativeWork` |
+| `Event` | `schema:Event` |
+| `TextLiteral` | `rdf:Literal`, `xsd:string` |
+| `IntegerLiteral` | `rdf:Literal`, `xsd:integer` |
+| `DecimalLiteral` | `rdf:Literal`, `xsd:decimal` |
+| `BoolLiteral` | `rdf:Literal`, `xsd:boolean` |
+| `DateLiteral` | `rdf:Literal`, `xsd:date` |
+| `TimeLiteral` | `rdf:Literal`, `xsd:time` |
+| `DateTimeLiteral` | `rdf:Literal`, `xsd:dateTime` |
+| `DurationLiteral` | `rdf:Literal`, `xsd:duration` |
+| `URILiteral` | `rdf:Literal`, `xsd:anyURI` |
+| `JSONLiteral` | `rdf:Literal`, `rdf:JSON` |
+</details>
+
+## Statement Patterns [#statement-patterns]
+
+- [Attributes](/context-protocol/specification/attributes) - Describe properties of an entity.
+- [Links](/context-protocol/specification/links) - Describes connections between entities.
+- [Actions](/context-protocol/specification/actions) - Describe an action taken by an actor.

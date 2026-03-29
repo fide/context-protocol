@@ -1,0 +1,11 @@
+---
+title: "normalizePredicateReferenceIdentifier"
+description: "Normalize a predicate reference identifier to canonical URL form.
+
+Predicate reference identifiers must be canonical absolute `https` URLs without userinfo."
+full: true
+---
+
+import { SDKFunctionPageInteractive } from '@/components/sdk-layout/sdk-function-page-interactive';
+
+<SDKFunctionPageInteractive data={{"name":"normalizePredicateReferenceIdentifier","description":"Normalize a predicate reference identifier to canonical URL form.\n\nPredicate reference identifiers must be canonical absolute `https` URLs without userinfo.","section":"@Fide Work","signatures":[{"description":"Normalize a predicate reference identifier to canonical URL form.\n\nPredicate reference identifiers must be canonical absolute `https` URLs without userinfo.","parameters":[{"name":"referenceIdentifier","type":"string","optional":false,"description":"Predicate reference identifier.","example":"https://schema.org/name"},{"name":"options","type":"NormalizePredicateReferenceIdentifierOptions","optional":true,"description":"Normalization options.","example":"{ skipUrlNormalization: false }"}],"returnType":"string","returnDescription":"Canonical predicate URL string.","infoCallout":{"title":"Node Runtime Required","body":"This function requires a Node.js runtime and is disabled in the browser docs preview."},"referencedTypes":[{"name":"NormalizePredicateReferenceIdentifierOptions","description":"Options for predicate reference identifier normalization.","type":"NormalizePredicateReferenceIdentifierOptions","entries":{"skipUrlNormalization":{"description":"","type":"boolean","required":false}}}]}],"constants":[],"referencedTypes":[{"name":"NormalizePredicateReferenceIdentifierOptions","description":"Options for predicate reference identifier normalization.","type":"NormalizePredicateReferenceIdentifierOptions","entries":{"skipUrlNormalization":{"description":"","type":"boolean","required":false}}}]}} />

@@ -1,0 +1,52 @@
+---
+title: Overview
+description: The standard for graphing context into trusted world models.
+---
+
+import { Callout } from 'fumadocs-ui/components/callout';
+
+Context in our world is fragmented. Every person, application, and agent maintains their own isolated view of reality. This separation creates context amnesia—where knowledge is locked in silos, and trust cannot travel.
+
+The Fide Context Protocol (FCP) defines shared rules for representing context so different systems can build verifiable world models from the same foundation.
+FCP relies on [Fide ID](/id) for identifier syntax and validation mechanics, and on [Fide Vocabulary](/vocabulary) for valid entity-type/reference-type combinations and entity-specific constraints.
+
+<Callout type="info" title="FAQ">
+### What does "world model" mean here?
+<details>
+  <summary>It can mean different kinds of systems, and FCP is designed to support that range.</summary>
+
+  - **Common uses:** knowledge graphs, context graphs, simulation systems, and generative systems.
+  - **FCP's role:** provide shared context structure across these different uses.
+</details>
+
+### How is FCP used?
+<details>
+  <summary>FCP can be used in world model applications and as infrastructure for building with context.</summary>
+
+  - **Use in applications:** use applications that already support FCP, or build one that does.
+  - **Build with it:** create systems that generate, validate, store, and share FCP-structured data.
+</details>
+
+### What does FCP standardize?
+<details>
+  <summary>Consistent IDs and a consistent statement format.</summary>
+
+  - **Consistent IDs:** the same input always produces the same ID.
+  - **Consistent format:** statements follow the same structure across systems.
+  - **FCP does not define:** trust scoring, evaluation methods, or storage architecture.
+</details>
+</Callout>
+  
+## Philosophy
+
+- **Decision history matters:** informed actions require facts, relationships, and the reasoning behind prior choices.
+
+- **Reality is subjective:** truth depends on which evaluators and methods you trust.
+
+- **Trust is portable:** people and agents should be able to carry trusted context across private and public environments.
+
+## Fide Ecosystem Alignment
+
+- [Fide Vocabulary](/vocabulary) defines the entity types and codes used in FCP statements
+- [Fide ID](/id) provides the deterministic identifiers used for entities and statements in FCP
+- [Fide Graph](/graph) is the reference graph implementation that stores and serves FCP statements

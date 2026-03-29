@@ -1,0 +1,14 @@
+{
+  "title": "Specification",
+  "root": true,
+  "pages": [
+    "index",
+    "statements",
+    "--- Patterns ---",
+    "attributes",
+    "links",
+    "actions",
+    "--- References ---",
+    "external-vocabulary"
+  ]
+}

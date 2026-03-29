@@ -1,0 +1,12 @@
+---
+title: "normalizeReferenceIdentifier"
+description: "Normalize a reference identifier for general entity usage.
+
+For http(s) URLs this canonicalizes protocol/host casing and removes default ports.
+Non-URL values are returned unchanged."
+full: true
+---
+
+import { SDKFunctionPageInteractive } from '@/components/sdk-layout/sdk-function-page-interactive';
+
+<SDKFunctionPageInteractive data={{"name":"normalizeReferenceIdentifier","description":"Normalize a reference identifier for general entity usage.\n\nFor http(s) URLs this canonicalizes protocol/host casing and removes default ports.\nNon-URL values are returned unchanged.","section":"@Fide Work","signatures":[{"description":"Normalize a reference identifier for general entity usage.\n\nFor http(s) URLs this canonicalizes protocol/host casing and removes default ports.\nNon-URL values are returned unchanged.","parameters":[{"name":"referenceIdentifier","type":"string","optional":false,"description":"Reference identifier value.","example":"https://x.com/Alice"},{"name":"options","type":"NormalizeReferenceIdentifierOptions","optional":true,"description":"Normalization options.","example":"{ skipUrlNormalization: false }"}],"returnType":"string","returnDescription":"Normalized reference identifier.","infoCallout":{"title":"Node Runtime Required","body":"This function requires a Node.js runtime and is disabled in the browser docs preview."},"referencedTypes":[{"name":"NormalizeReferenceIdentifierOptions","description":"","type":"NormalizeReferenceIdentifierOptions","entries":{"skipUrlNormalization":{"description":"","type":"boolean","required":false}}}]}],"constants":[],"referencedTypes":[{"name":"NormalizeReferenceIdentifierOptions","description":"","type":"NormalizeReferenceIdentifierOptions","entries":{"skipUrlNormalization":{"description":"","type":"boolean","required":false}}}]}} />
