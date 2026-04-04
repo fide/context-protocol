@@ -53,6 +53,25 @@ try {
   console.error("  ❌ Error:", error.message);
 }
 
+console.log("\n4. Testing Dublin Core Terms prefix...");
+checks += 1;
+try {
+  const expanded = expandPredicateReferenceIdentifier("dcterms:replaces");
+  const compacted = compactPredicateReferenceIdentifier("https://purl.org/dc/terms/replaces");
+  if (expanded !== "https://purl.org/dc/terms/replaces") {
+    failures += 1;
+    console.error("  ❌ Expected dcterms expansion");
+  } else if (compacted !== "dcterms:replaces") {
+    failures += 1;
+    console.error("  ❌ Expected dcterms compaction");
+  } else {
+    console.log("  ✅ Expanded and compacted dcterms:replaces");
+  }
+} catch (error) {
+  failures += 1;
+  console.error("  ❌ Error:", error.message);
+}
+
 if (failures > 0) {
   console.error(`\n❌ ${failures} test(s) failed`);
   process.exit(1);

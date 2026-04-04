@@ -1,0 +1,162 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fide.work/context-protocol/v0/statement-policy.schema.json",
+  "title": "Fide Context Protocol Statement Policy v0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "namespaceUrl",
+    "specVersion",
+    "specDate",
+    "predicateRole",
+    "forbiddenPredicates",
+    "typeAssertionPredicates",
+    "guideRules",
+    "canonicalInversePredicates"
+  ],
+  "properties": {
+    "namespaceUrl": {
+      "type": "string",
+      "format": "uri",
+      "minLength": 1
+    },
+    "specVersion": {
+      "type": "string",
+      "pattern": "^[0-9]+$"
+    },
+    "specDate": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+    },
+    "predicateRole": {
+      "$ref": "#/$defs/predicateRole"
+    },
+    "forbiddenPredicates": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/ruleWithPredicate"
+      }
+    },
+    "typeAssertionPredicates": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "format": "uri",
+        "pattern": "^https://"
+      }
+    },
+    "guideRules": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/rule"
+      }
+    },
+    "canonicalInversePredicates": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/canonicalInversePredicate"
+      }
+    }
+  },
+  "$defs": {
+    "rule": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "description", "path"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "path": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "ruleWithPredicate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "predicateIri", "description", "path"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "predicateIri": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https://"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "path": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "predicateRole": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["entityType", "referenceType", "description", "path"],
+      "properties": {
+        "entityType": {
+          "const": "Concept"
+        },
+        "referenceType": {
+          "const": "NetworkResource"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "path": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "canonicalInversePredicate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "canonicalPredicateIri",
+        "inversePredicateIri",
+        "strength",
+        "description",
+        "path"
+      ],
+      "properties": {
+        "canonicalPredicateIri": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https://"
+        },
+        "inversePredicateIri": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https://"
+        },
+        "strength": {
+          "type": "string",
+          "enum": ["SHOULD", "MAY"]
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "path": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  }
+}

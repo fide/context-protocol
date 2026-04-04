@@ -73,6 +73,22 @@ export {
   type CanonicalStatementSet,
 } from "./statement/index.js";
 
+export {
+  FCP_STATEMENT_POLICY,
+  FCP_PREDICATE_ROLE,
+  FCP_FORBIDDEN_PREDICATES,
+  FCP_TYPE_ASSERTION_PREDICATES,
+  FCP_STATEMENT_GUIDE_RULES,
+  FCP_CANONICAL_INVERSE_PREDICATES,
+} from "./spec/index.js";
+
+export type {
+  FcpPredicateRole,
+  FcpForbiddenPredicateRule,
+  FcpStatementGuideRule,
+  FcpCanonicalInversePredicateRule,
+} from "./spec/index.js";
+
 // Policies (used by downstream SDKs/CLIs)
 export { enforceStatementPredicateBatchPolicy } from "./statement/policy/enforceStatementPredicateBatchPolicy.js";
 export {

@@ -1,64 +1,29 @@
 import { FIDE_ENTITY_TYPES } from "@fide-work/id";
 import { STANDARD_CURIE_PREFIXES } from "../../predicate-vocabulary/index.js";
+import {
+  FCP_CANONICAL_INVERSE_PREDICATES,
+  FCP_FORBIDDEN_PREDICATES,
+  FCP_STATEMENT_GUIDE_RULES,
+  FCP_TYPE_ASSERTION_PREDICATES,
+  type FcpStatementGuideRule,
+} from "../../spec/index.js";
 
-export type StatementGuideRule = {
-  id: string;
-  description: string;
-  path: string;
-};
-
-const STATEMENTS_SPEC_PATH = "/fcp/specification/statements";
-
-/**
- * Canonical predicate URIs that are not allowed at protocol level.
- */
-const FORBIDDEN_PREDICATE_RULES = [
-  {
-    id: "fcp.predicate.disallow-schema-identifier",
-    predicateIri: "https://schema.org/identifier",
-    description:
-      "Entity identifiers are implicit in Fide IDs and reference identifiers; do not add redundant identifier predicates.",
-    path: STATEMENTS_SPEC_PATH,
-  },
-  {
-    id: "fcp.predicate.disallow-schema-sameAs",
-    predicateIri: "https://schema.org/sameAs",
-    description:
-      "Use http://www.w3.org/2002/07/owl#sameAs for strict identity assertions; https://schema.org/sameAs is not allowed in FCP statements.",
-    path: STATEMENTS_SPEC_PATH,
-  },
-] as const;
+export type StatementGuideRule = FcpStatementGuideRule;
 
 const FORBIDDEN_PREDICATE_REASONS_BY_IRI: Record<string, string> = Object.fromEntries(
-  FORBIDDEN_PREDICATE_RULES.map((rule) => [rule.predicateIri, rule.description]),
+  FCP_FORBIDDEN_PREDICATES.map((rule) => [rule.predicateIri, rule.description]),
 );
 
-export const STATEMENT_GUIDE_RULES: readonly StatementGuideRule[] = [
-  {
-    id: "fcp.predicate.concept-network-resource",
-    description: "Predicate must use entityType=Concept and referenceType=NetworkResource.",
-    path: STATEMENTS_SPEC_PATH,
-  },
-  ...FORBIDDEN_PREDICATE_RULES.map(({ id, description, path }) => ({
-    id,
-    description,
-    path,
-  })),
-  {
-    id: "fcp.predicate.disallow-redundant-type-assertion",
-    description:
-      "Do not use rdf:type or schema:additionalType when the object type is already encoded by the subject entity type.",
-    path: STATEMENTS_SPEC_PATH,
-  },
-] as const;
+export const STATEMENT_GUIDE_RULES: readonly StatementGuideRule[] = FCP_STATEMENT_GUIDE_RULES;
 
 /**
  * Predicates treated as type assertion channels.
  */
-const TYPE_ASSERTION_PREDICATE_URIS = new Set<string>([
-  "https://www.w3.org/1999/02/22-rdf-syntax-ns#type",
-  "https://schema.org/additionalType",
-]);
+const TYPE_ASSERTION_PREDICATE_URIS = new Set<string>(FCP_TYPE_ASSERTION_PREDICATES);
+
+const CANONICAL_INVERSE_PREDICATES_BY_INVERSE_IRI: Record<string, string> = Object.fromEntries(
+  FCP_CANONICAL_INVERSE_PREDICATES.map((rule) => [rule.inversePredicateIri, rule.canonicalPredicateIri]),
+);
 
 const EXACT_STANDARD_URIS_BY_ENTITY_TYPE: Record<string, Set<string>> = Object.fromEntries(
   Object.entries(FIDE_ENTITY_TYPES).map(([entityType, spec]) => {
@@ -83,4 +48,5 @@ export const STATEMENT_PREDICATE_POLICY_CONSTANTS = {
   forbiddenPredicateRules: FORBIDDEN_PREDICATE_REASONS_BY_IRI,
   typeAssertionPredicateUris: TYPE_ASSERTION_PREDICATE_URIS,
   exactStandardUrisByEntityType: EXACT_STANDARD_URIS_BY_ENTITY_TYPE,
+  canonicalInversePredicatesByInverseIri: CANONICAL_INVERSE_PREDICATES_BY_INVERSE_IRI,
 } as const;

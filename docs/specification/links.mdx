@@ -6,6 +6,7 @@ description: Link statement pattern rules.
 Link statements describe how one entity is connected to another. In this pattern, the predicate names the relationship and the object identifies the related entity. The object is used as another entity in the relationship, not as the value of a property.
 
 - SHOULD use this pattern when the goal of the statement is to relate the subject to another entity as an entity.
+- SHOULD NOT author both directions of the same inverse relationship for the same fact.
 
 ## Link Statement Parts [#link-statement-parts]
 
@@ -46,3 +47,17 @@ Use [Attributes](/context-protocol/specification/attributes) when the object fun
 ```text
 Person | schema:name | "Alice"
 ```
+
+## Inverse Direction [#inverse-direction]
+
+Some link predicates have inverse forms, such as `schema:hasPart` and `schema:isPartOf`.
+
+Both directions may be valid at the protocol level, but producers SHOULD choose one canonical authored direction for a given fact and avoid storing both directions redundantly.
+
+For part-whole relationships, FCP strongly encourages `schema:hasPart` as the canonical authored direction.
+
+```text
+Neo4j Labs | schema:hasPart | Neo4j Labs MCP Servers
+```
+
+Consumers MAY interpret or query the inverse relationship when needed without requiring that the inverse statement also be authored.

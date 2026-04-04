@@ -1,7 +1,9 @@
 /**
  * Prefix map for expanding standards CURIEs to canonical predicate IRIs.
+ * Kept in sync with spec/v0/predicate-prefixes.json (prefixes object).
  */
 export const FCP_CURIE_PREFIX_IRIS: Record<string, string> = {
+  dcterms: "https://purl.org/dc/terms/",
   schema: "https://schema.org/",
   rdf: "https://www.w3.org/1999/02/22-rdf-syntax-ns#",
   rdfs: "https://www.w3.org/2000/01/rdf-schema#",
