@@ -62,3 +62,19 @@ The entity related to the subject by the predicate.
 - [Attributes](/context-protocol/specification/attributes) - Describe properties of an entity.
 - [Links](/context-protocol/specification/links) - Describes connections between entities.
 - [Actions](/context-protocol/specification/actions) - Describe an action taken by an actor.
+
+## Temporal Modeling [#temporal-modeling]
+
+FCP supports two distinct ways to model time, and producers SHOULD choose the one that matches their semantic intent.
+
+- Use time on an entity when time is part of the thing itself.
+  Examples: an [`Event`](/vocabulary/definitions/event), an [`Action`](/vocabulary/definitions/action), or another temporally bounded entity with properties such as `schema:startDate` or `schema:endDate`.
+- Use time on a `Statement` when time qualifies the applicability, validity, or truth interval of the claim.
+  Examples: `schema:validFrom` or `schema:validThrough` attached to a `statementFideId`.
+
+In short:
+
+- entity time describes when the thing happened or existed
+- statement time describes when the claim holds
+
+Producers SHOULD NOT redundantly model the same temporal boundary on both the entity and the statement unless they intentionally need both layers and the distinction is clear.

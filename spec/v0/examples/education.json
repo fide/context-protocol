@@ -1,0 +1,124 @@
+{
+  "$schema": "https://raw.githubusercontent.com/fide/context-protocol/refs/heads/main/spec/v0/examples/example.schema.json",
+  "$id": "https://raw.githubusercontent.com/fide/context-protocol/refs/heads/main/spec/v0/examples/education.json",
+  "title": "Education",
+  "description": "Modeling educational background with alumni relationships and temporal qualifiers.",
+  "specVersion": "0",
+  "tags": ["education", "temporal", "statement-qualifier"],
+  "statements": [
+    {
+      "batch_index": 1,
+      "notes": "Name the student.",
+      "subject": {
+        "entityType": "Person",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://www.linkedin.com/in/ada-lovelace/"
+      },
+      "predicate": {
+        "entityType": "Concept",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://schema.org/name"
+      },
+      "object": {
+        "entityType": "TextLiteral",
+        "referenceType": "TextLiteral",
+        "referenceIdentifier": "Ada Lovelace"
+      }
+    },
+    {
+      "batch_index": 2,
+      "notes": "Name the institution.",
+      "subject": {
+        "entityType": "Organization",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://www.linkedin.com/school/university-of-london/"
+      },
+      "predicate": {
+        "entityType": "Concept",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://schema.org/name"
+      },
+      "object": {
+        "entityType": "TextLiteral",
+        "referenceType": "TextLiteral",
+        "referenceIdentifier": "University of London"
+      }
+    },
+    {
+      "batch_index": 3,
+      "notes": "Link person to institution via alumniOf. This is a Link pattern (entity relationship, not an action).",
+      "subject": {
+        "entityType": "Person",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://www.linkedin.com/in/ada-lovelace/"
+      },
+      "predicate": {
+        "entityType": "Concept",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://schema.org/alumniOf"
+      },
+      "object": {
+        "entityType": "Organization",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://www.linkedin.com/school/university-of-london/"
+      }
+    },
+    {
+      "batch_index": 4,
+      "notes": "Statement-about-statement: when the enrollment started.",
+      "subject": {
+        "entityType": "Statement",
+        "referenceType": "Statement",
+        "referenceIdentifier": "@3"
+      },
+      "predicate": {
+        "entityType": "Concept",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://schema.org/validFrom"
+      },
+      "object": {
+        "entityType": "YearLiteral",
+        "referenceType": "YearLiteral",
+        "referenceIdentifier": "2018"
+      }
+    },
+    {
+      "batch_index": 5,
+      "notes": "Statement-about-statement: when the enrollment ended.",
+      "subject": {
+        "entityType": "Statement",
+        "referenceType": "Statement",
+        "referenceIdentifier": "@3"
+      },
+      "predicate": {
+        "entityType": "Concept",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://schema.org/validThrough"
+      },
+      "object": {
+        "entityType": "YearLiteral",
+        "referenceType": "YearLiteral",
+        "referenceIdentifier": "2022"
+      }
+    },
+    {
+      "batch_index": 6,
+      "notes": "A description of the educational experience, attached to the institution. This captures program-specific detail.",
+      "subject": {
+        "entityType": "Organization",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://www.linkedin.com/school/university-of-london/"
+      },
+      "predicate": {
+        "entityType": "Concept",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://schema.org/description"
+      },
+      "object": {
+        "entityType": "TextLiteral",
+        "referenceType": "TextLiteral",
+        "referenceIdentifier": "Studies in mathematics and science under the tutelage of Augustus De Morgan."
+      }
+    }
+  ]
+}

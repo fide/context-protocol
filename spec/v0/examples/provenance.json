@@ -1,0 +1,48 @@
+{
+  "$schema": "https://raw.githubusercontent.com/fide/context-protocol/refs/heads/main/spec/v0/examples/example.schema.json",
+  "$id": "https://raw.githubusercontent.com/fide/context-protocol/refs/heads/main/spec/v0/examples/provenance.json",
+  "title": "Provenance",
+  "description": "Tracking where statements were derived from using prov:wasDerivedFrom on statement-about-statement patterns.",
+  "specVersion": "0",
+  "tags": ["provenance", "statement-qualifier"],
+  "statements": [
+    {
+      "batch_index": 1,
+      "notes": "A person works for an organization. This is the base fact we want to track provenance for.",
+      "subject": {
+        "entityType": "Person",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://www.linkedin.com/in/ada-lovelace/"
+      },
+      "predicate": {
+        "entityType": "Concept",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://schema.org/worksFor"
+      },
+      "object": {
+        "entityType": "Organization",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://www.linkedin.com/company/analytical-engines-ltd/"
+      }
+    },
+    {
+      "batch_index": 2,
+      "notes": "Statement-about-statement: record that batch_index 1 was derived from a specific LinkedIn profile page. The NetworkResource subject references the profile page as the provenance source.",
+      "subject": {
+        "entityType": "Statement",
+        "referenceType": "Statement",
+        "referenceIdentifier": "@1"
+      },
+      "predicate": {
+        "entityType": "Concept",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://www.w3.org/ns/prov#wasDerivedFrom"
+      },
+      "object": {
+        "entityType": "NetworkResource",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://www.linkedin.com/in/ada-lovelace/"
+      }
+    }
+  ]
+}

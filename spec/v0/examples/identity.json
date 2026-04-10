@@ -1,0 +1,67 @@
+{
+  "$schema": "https://raw.githubusercontent.com/fide/context-protocol/refs/heads/main/spec/v0/examples/example.schema.json",
+  "$id": "https://raw.githubusercontent.com/fide/context-protocol/refs/heads/main/spec/v0/examples/identity.json",
+  "title": "Identity",
+  "description": "Naming entities and bridging identity across multiple references with owl:sameAs.",
+  "specVersion": "0",
+  "tags": ["identity", "naming"],
+  "statements": [
+    {
+      "batch_index": 1,
+      "notes": "Assign a human-readable name to a Person identified by their Wikipedia page.",
+      "subject": {
+        "entityType": "Person",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://en.wikipedia.org/wiki/Ada_Lovelace"
+      },
+      "predicate": {
+        "entityType": "Concept",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://schema.org/name"
+      },
+      "object": {
+        "entityType": "TextLiteral",
+        "referenceType": "TextLiteral",
+        "referenceIdentifier": "Ada Lovelace"
+      }
+    },
+    {
+      "batch_index": 2,
+      "notes": "Bridge identity: assert that two different references resolve to the same Person. Uses owl:sameAs (not schema:sameAs, which is forbidden).",
+      "subject": {
+        "entityType": "Person",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://en.wikipedia.org/wiki/Ada_Lovelace"
+      },
+      "predicate": {
+        "entityType": "Concept",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://www.w3.org/2002/07/owl#sameAs"
+      },
+      "object": {
+        "entityType": "Person",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://www.wikidata.org/wiki/Q7259"
+      }
+    },
+    {
+      "batch_index": 3,
+      "notes": "Name an Organization by its canonical URL.",
+      "subject": {
+        "entityType": "Organization",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://en.wikipedia.org/wiki/University_of_London"
+      },
+      "predicate": {
+        "entityType": "Concept",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://schema.org/name"
+      },
+      "object": {
+        "entityType": "TextLiteral",
+        "referenceType": "TextLiteral",
+        "referenceIdentifier": "University of London"
+      }
+    }
+  ]
+}

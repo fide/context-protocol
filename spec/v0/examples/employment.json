@@ -1,0 +1,124 @@
+{
+  "$schema": "https://raw.githubusercontent.com/fide/context-protocol/refs/heads/main/spec/v0/examples/example.schema.json",
+  "$id": "https://raw.githubusercontent.com/fide/context-protocol/refs/heads/main/spec/v0/examples/employment.json",
+  "title": "Employment",
+  "description": "Modeling work relationships with temporal qualifiers and job titles using statement-about-statement patterns.",
+  "specVersion": "0",
+  "tags": ["employment", "temporal", "statement-qualifier"],
+  "statements": [
+    {
+      "batch_index": 1,
+      "notes": "Name the person.",
+      "subject": {
+        "entityType": "Person",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://www.linkedin.com/in/ada-lovelace/"
+      },
+      "predicate": {
+        "entityType": "Concept",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://schema.org/name"
+      },
+      "object": {
+        "entityType": "TextLiteral",
+        "referenceType": "TextLiteral",
+        "referenceIdentifier": "Ada Lovelace"
+      }
+    },
+    {
+      "batch_index": 2,
+      "notes": "Name the employer.",
+      "subject": {
+        "entityType": "Organization",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://www.linkedin.com/company/analytical-engines-ltd/"
+      },
+      "predicate": {
+        "entityType": "Concept",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://schema.org/name"
+      },
+      "object": {
+        "entityType": "TextLiteral",
+        "referenceType": "TextLiteral",
+        "referenceIdentifier": "Analytical Engines Ltd"
+      }
+    },
+    {
+      "batch_index": 3,
+      "notes": "Link the person to their employer. This statement will be the target of temporal and role qualifiers below.",
+      "subject": {
+        "entityType": "Person",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://www.linkedin.com/in/ada-lovelace/"
+      },
+      "predicate": {
+        "entityType": "Concept",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://schema.org/worksFor"
+      },
+      "object": {
+        "entityType": "Organization",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://www.linkedin.com/company/analytical-engines-ltd/"
+      }
+    },
+    {
+      "batch_index": 4,
+      "notes": "Statement-about-statement: qualify WHEN the worksFor relationship began. The subject is batch_index 3's computed statementFideId.",
+      "subject": {
+        "entityType": "Statement",
+        "referenceType": "Statement",
+        "referenceIdentifier": "@3"
+      },
+      "predicate": {
+        "entityType": "Concept",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://schema.org/validFrom"
+      },
+      "object": {
+        "entityType": "YearMonthLiteral",
+        "referenceType": "YearMonthLiteral",
+        "referenceIdentifier": "2021-01"
+      }
+    },
+    {
+      "batch_index": 5,
+      "notes": "Statement-about-statement: qualify WHEN the worksFor relationship ended.",
+      "subject": {
+        "entityType": "Statement",
+        "referenceType": "Statement",
+        "referenceIdentifier": "@3"
+      },
+      "predicate": {
+        "entityType": "Concept",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://schema.org/validThrough"
+      },
+      "object": {
+        "entityType": "YearMonthLiteral",
+        "referenceType": "YearMonthLiteral",
+        "referenceIdentifier": "2024-11"
+      }
+    },
+    {
+      "batch_index": 6,
+      "notes": "Statement-about-statement: attach a job title to the worksFor relationship.",
+      "subject": {
+        "entityType": "Statement",
+        "referenceType": "Statement",
+        "referenceIdentifier": "@3"
+      },
+      "predicate": {
+        "entityType": "Concept",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://schema.org/jobTitle"
+      },
+      "object": {
+        "entityType": "TextLiteral",
+        "referenceType": "TextLiteral",
+        "referenceIdentifier": "Chief Algorithm Officer"
+      }
+    }
+  ]
+}

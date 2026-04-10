@@ -19,13 +19,11 @@ export const FCP_STATEMENT_POLICY = ${JSON.stringify(spec, null, 2)} as const;
 export const FCP_PREDICATE_ROLE = FCP_STATEMENT_POLICY.predicateRole;
 export const FCP_FORBIDDEN_PREDICATES = FCP_STATEMENT_POLICY.forbiddenPredicates;
 export const FCP_TYPE_ASSERTION_PREDICATES = FCP_STATEMENT_POLICY.typeAssertionPredicates;
-export const FCP_STATEMENT_GUIDE_RULES = FCP_STATEMENT_POLICY.guideRules;
-export const FCP_CANONICAL_INVERSE_PREDICATES = FCP_STATEMENT_POLICY.canonicalInversePredicates;
+export const FCP_STATEMENT_GUIDE_EXAMPLES = FCP_STATEMENT_POLICY.guideExamples;
 
 export type FcpPredicateRole = typeof FCP_PREDICATE_ROLE;
 export type FcpForbiddenPredicateRule = (typeof FCP_FORBIDDEN_PREDICATES)[number];
-export type FcpStatementGuideRule = (typeof FCP_STATEMENT_GUIDE_RULES)[number];
-export type FcpCanonicalInversePredicateRule = (typeof FCP_CANONICAL_INVERSE_PREDICATES)[number];
+export type FcpStatementGuideExample = (typeof FCP_STATEMENT_GUIDE_EXAMPLES)[number];
 `;
 }
 
@@ -34,7 +32,7 @@ async function main() {
   await mkdir(dirname(SDK_SPEC_OUTPUT), { recursive: true });
   await writeFile(SDK_SPEC_OUTPUT, buildSpecModule(spec), "utf8");
   console.log(
-    `Generated FCP SDK spec module for ${spec.forbiddenPredicates.length} forbidden predicate rules and ${spec.canonicalInversePredicates.length} canonical inverse predicate rules.`,
+    `Generated FCP SDK spec module for ${spec.forbiddenPredicates.length} forbidden predicate rules and ${spec.guideExamples.length} guide examples.`,
   );
 }
 

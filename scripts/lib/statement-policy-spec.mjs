@@ -26,6 +26,50 @@ function validateRule(rule, path, errors) {
   }
 }
 
+function validateStatementRole(role, path, errors) {
+  if (!isObject(role)) {
+    errors.push(`${path} must be an object`);
+    return;
+  }
+  for (const key of ["entityType", "referenceType", "referenceIdentifier"]) {
+    if (typeof role[key] !== "string" || role[key].length === 0) {
+      errors.push(`${path}.${key} must be a non-empty string`);
+    }
+  }
+}
+
+function validateGuideStatement(triple, path, errors) {
+  if (!isObject(triple)) {
+    errors.push(`${path} must be an object`);
+    return;
+  }
+  validateStatementRole(triple.subject, `${path}.subject`, errors);
+  validateStatementRole(triple.predicate, `${path}.predicate`, errors);
+  validateStatementRole(triple.object, `${path}.object`, errors);
+}
+
+function validateGuideExample(example, path, errors) {
+  if (!isObject(example)) {
+    errors.push(`${path} must be an object`);
+    return;
+  }
+  if (typeof example.ruleId !== "string" || example.ruleId.length === 0) {
+    errors.push(`${path}.ruleId must be a non-empty string`);
+  }
+  if (example.strength !== "SHOULD" && example.strength !== "MAY") {
+    errors.push(`${path}.strength must be SHOULD or MAY`);
+  }
+  if (typeof example.reason !== "string" || example.reason.length === 0) {
+    errors.push(`${path}.reason must be a non-empty string`);
+  }
+  validateGuideStatement(example.discouraged, `${path}.discouraged`, errors);
+  if (example.preferred === null) {
+    // ok
+  } else {
+    validateGuideStatement(example.preferred, `${path}.preferred`, errors);
+  }
+}
+
 export async function loadValidatedStatementPolicySpec(fcpRoot) {
   const specPath = resolve(fcpRoot, "spec/v0/statement-policy.json");
   const schemaPath = resolve(fcpRoot, "spec/v0/statement-policy.schema.json");
@@ -94,37 +138,11 @@ export async function loadValidatedStatementPolicySpec(fcpRoot) {
     }
   }
 
-  if (!Array.isArray(spec.guideRules)) {
-    errors.push("guideRules must be an array");
+  if (!Array.isArray(spec.guideExamples)) {
+    errors.push("guideExamples must be an array");
   } else {
-    for (const [index, rule] of spec.guideRules.entries()) {
-      validateRule(rule, `guideRules[${index}]`, errors);
-    }
-  }
-
-  if (!Array.isArray(spec.canonicalInversePredicates)) {
-    errors.push("canonicalInversePredicates must be an array");
-  } else {
-    for (const [index, rule] of spec.canonicalInversePredicates.entries()) {
-      if (!isObject(rule)) {
-        errors.push(`canonicalInversePredicates[${index}] must be an object`);
-        continue;
-      }
-      if (typeof rule.canonicalPredicateIri !== "string" || !rule.canonicalPredicateIri.startsWith("https://")) {
-        errors.push(`canonicalInversePredicates[${index}].canonicalPredicateIri must be an https URI string`);
-      }
-      if (typeof rule.inversePredicateIri !== "string" || !rule.inversePredicateIri.startsWith("https://")) {
-        errors.push(`canonicalInversePredicates[${index}].inversePredicateIri must be an https URI string`);
-      }
-      if (rule.strength !== "SHOULD" && rule.strength !== "MAY") {
-        errors.push(`canonicalInversePredicates[${index}].strength must be SHOULD or MAY`);
-      }
-      if (typeof rule.description !== "string" || rule.description.length === 0) {
-        errors.push(`canonicalInversePredicates[${index}].description must be a non-empty string`);
-      }
-      if (typeof rule.path !== "string" || rule.path.length === 0) {
-        errors.push(`canonicalInversePredicates[${index}].path must be a non-empty string`);
-      }
+    for (const [index, example] of spec.guideExamples.entries()) {
+      validateGuideExample(example, `guideExamples[${index}]`, errors);
     }
   }
 

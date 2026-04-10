@@ -1,4 +1,6 @@
 {
+  "$schema": "https://raw.githubusercontent.com/fide/context-protocol/refs/heads/main/spec/v0/predicate-prefixes.schema.json",
+  "$id": "https://raw.githubusercontent.com/fide/context-protocol/refs/heads/main/spec/v0/predicate-prefixes.json",
   "namespaceUrl": "https://fide.work/context-protocol/v0/",
   "specVersion": "0",
   "specDate": "2026-03-28",

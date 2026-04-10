@@ -5,12 +5,16 @@
   "type": "object",
   "additionalProperties": false,
   "required": [
+    "$schema",
+    "$id",
     "namespaceUrl",
     "specVersion",
     "specDate",
     "prefixes"
   ],
   "properties": {
+    "$schema": { "type": "string", "format": "uri" },
+    "$id": { "type": "string", "format": "uri" },
     "namespaceUrl": {
       "type": "string",
       "format": "uri",

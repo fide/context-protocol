@@ -1,7 +1,9 @@
 {
+  "$schema": "https://raw.githubusercontent.com/fide/context-protocol/refs/heads/main/spec/v0/statement-policy.schema.json",
+  "$id": "https://raw.githubusercontent.com/fide/context-protocol/refs/heads/main/spec/v0/statement-policy.json",
   "namespaceUrl": "https://fide.work/context-protocol/v0/",
   "specVersion": "0",
-  "specDate": "2026-04-04",
+  "specDate": "2026-04-09",
   "predicateRole": {
     "entityType": "Concept",
     "referenceType": "NetworkResource",
@@ -26,30 +28,68 @@
     "https://www.w3.org/1999/02/22-rdf-syntax-ns#type",
     "https://schema.org/additionalType"
   ],
-  "guideRules": [
+  "guideExamples": [
     {
-      "id": "fcp.predicate.concept-network-resource",
-      "description": "Predicate must use entityType=Concept and referenceType=NetworkResource.",
-      "path": "/fcp/specification/statements"
-    },
-    {
-      "id": "fcp.predicate.disallow-redundant-type-assertion",
-      "description": "Do not use rdf:type or schema:additionalType when the object type is already encoded by the subject entity type.",
-      "path": "/fcp/specification/statements"
-    },
-    {
-      "id": "fcp.links.prefer-has-part-direction",
-      "description": "For part-whole relationships, prefer schema:hasPart as the canonical authored direction and avoid redundantly authoring schema:isPartOf for the same fact.",
-      "path": "/fcp/specification/links#inverse-direction"
-    }
-  ],
-  "canonicalInversePredicates": [
-    {
-      "canonicalPredicateIri": "https://schema.org/hasPart",
-      "inversePredicateIri": "https://schema.org/isPartOf",
+      "ruleId": "fcp.predicate.disallow-redundant-type-assertion",
       "strength": "SHOULD",
-      "description": "For part-whole relationships, prefer schema:hasPart as the canonical authored direction.",
-      "path": "/fcp/specification/links#inverse-direction"
+      "reason": "rdf:type or schema:additionalType should only be used to assert a type not already encoded by the subject's entity type. Redundancy is determined by the Fide Vocabulary: if the entity type lists the asserted type under its standards with standardFit 'Exact', the assertion is already implicit and should be omitted.",
+      "discouraged": {
+        "subject": {
+          "entityType": "Person",
+          "referenceType": "NetworkResource",
+          "referenceIdentifier": "https://en.wikipedia.org/wiki/Ada_Lovelace"
+        },
+        "predicate": {
+          "entityType": "Concept",
+          "referenceType": "NetworkResource",
+          "referenceIdentifier": "https://www.w3.org/1999/02/22-rdf-syntax-ns#type"
+        },
+        "object": {
+          "entityType": "Concept",
+          "referenceType": "NetworkResource",
+          "referenceIdentifier": "https://schema.org/Person"
+        }
+      },
+      "preferred": null
+    },
+    {
+      "ruleId": "fcp.links.prefer-has-part-direction",
+      "strength": "SHOULD",
+      "reason": "hasPart is the canonical authored direction for part-whole relationships. Authoring both directions for the same fact is redundant.",
+      "discouraged": {
+        "subject": {
+          "entityType": "CreativeWork",
+          "referenceType": "NetworkResource",
+          "referenceIdentifier": "https://example.com/papers/on-computable-numbers"
+        },
+        "predicate": {
+          "entityType": "Concept",
+          "referenceType": "NetworkResource",
+          "referenceIdentifier": "https://schema.org/isPartOf"
+        },
+        "object": {
+          "entityType": "CreativeWork",
+          "referenceType": "NetworkResource",
+          "referenceIdentifier": "https://example.com/collections/foundational-cs"
+        }
+      },
+      "preferred": {
+        "subject": {
+          "entityType": "CreativeWork",
+          "referenceType": "NetworkResource",
+          "referenceIdentifier": "https://example.com/collections/foundational-cs"
+        },
+        "predicate": {
+          "entityType": "Concept",
+          "referenceType": "NetworkResource",
+          "referenceIdentifier": "https://schema.org/hasPart"
+        },
+        "object": {
+          "entityType": "CreativeWork",
+          "referenceType": "NetworkResource",
+          "referenceIdentifier": "https://example.com/papers/on-computable-numbers"
+        }
+      }
     }
   ]
 }

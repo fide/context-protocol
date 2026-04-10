@@ -1,0 +1,105 @@
+{
+  "$schema": "https://raw.githubusercontent.com/fide/context-protocol/refs/heads/main/spec/v0/examples/example.schema.json",
+  "$id": "https://raw.githubusercontent.com/fide/context-protocol/refs/heads/main/spec/v0/examples/creative-works.json",
+  "title": "Creative Works",
+  "description": "Modeling publications, authorship, and part-whole relationships with schema:hasPart.",
+  "specVersion": "0",
+  "tags": ["creative-work", "authorship"],
+  "statements": [
+    {
+      "batch_index": 1,
+      "notes": "Name the publication.",
+      "subject": {
+        "entityType": "CreativeWork",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://example.com/papers/computing-machinery"
+      },
+      "predicate": {
+        "entityType": "Concept",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://schema.org/name"
+      },
+      "object": {
+        "entityType": "TextLiteral",
+        "referenceType": "TextLiteral",
+        "referenceIdentifier": "On Computable Numbers"
+      }
+    },
+    {
+      "batch_index": 2,
+      "notes": "Add a description to the publication. Descriptions are attributes with TextLiteral objects.",
+      "subject": {
+        "entityType": "CreativeWork",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://example.com/papers/computing-machinery"
+      },
+      "predicate": {
+        "entityType": "Concept",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://schema.org/description"
+      },
+      "object": {
+        "entityType": "TextLiteral",
+        "referenceType": "TextLiteral",
+        "referenceIdentifier": "A foundational paper on computability and Turing machines."
+      }
+    },
+    {
+      "batch_index": 3,
+      "notes": "Link a person as the creator. This is an Action pattern: an Agent performed creation.",
+      "subject": {
+        "entityType": "Person",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://en.wikipedia.org/wiki/Alan_Turing"
+      },
+      "predicate": {
+        "entityType": "Concept",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://schema.org/created"
+      },
+      "object": {
+        "entityType": "CreativeWork",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://example.com/papers/computing-machinery"
+      }
+    },
+    {
+      "batch_index": 4,
+      "notes": "A collection that contains the paper. Uses schema:hasPart (preferred canonical direction per FCP policy, instead of schema:isPartOf).",
+      "subject": {
+        "entityType": "CreativeWork",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://example.com/collections/foundational-cs"
+      },
+      "predicate": {
+        "entityType": "Concept",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://schema.org/hasPart"
+      },
+      "object": {
+        "entityType": "CreativeWork",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://example.com/papers/computing-machinery"
+      }
+    },
+    {
+      "batch_index": 5,
+      "notes": "Publication date as an attribute on the creative work itself (entity time, not statement time).",
+      "subject": {
+        "entityType": "CreativeWork",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://example.com/papers/computing-machinery"
+      },
+      "predicate": {
+        "entityType": "Concept",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://schema.org/datePublished"
+      },
+      "object": {
+        "entityType": "DateLiteral",
+        "referenceType": "DateLiteral",
+        "referenceIdentifier": "2026-02-15"
+      }
+    }
+  ]
+}

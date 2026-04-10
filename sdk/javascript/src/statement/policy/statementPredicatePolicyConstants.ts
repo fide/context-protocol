@@ -1,29 +1,24 @@
 import { FIDE_ENTITY_TYPES } from "@fide-work/id";
 import { STANDARD_CURIE_PREFIXES } from "../../predicate-vocabulary/index.js";
 import {
-  FCP_CANONICAL_INVERSE_PREDICATES,
   FCP_FORBIDDEN_PREDICATES,
-  FCP_STATEMENT_GUIDE_RULES,
+  FCP_STATEMENT_GUIDE_EXAMPLES,
   FCP_TYPE_ASSERTION_PREDICATES,
-  type FcpStatementGuideRule,
+  type FcpStatementGuideExample,
 } from "../../spec/index.js";
 
-export type StatementGuideRule = FcpStatementGuideRule;
+export type StatementGuideExample = FcpStatementGuideExample;
 
 const FORBIDDEN_PREDICATE_REASONS_BY_IRI: Record<string, string> = Object.fromEntries(
   FCP_FORBIDDEN_PREDICATES.map((rule) => [rule.predicateIri, rule.description]),
 );
 
-export const STATEMENT_GUIDE_RULES: readonly StatementGuideRule[] = FCP_STATEMENT_GUIDE_RULES;
+export const STATEMENT_GUIDE_EXAMPLES: readonly StatementGuideExample[] = FCP_STATEMENT_GUIDE_EXAMPLES;
 
 /**
  * Predicates treated as type assertion channels.
  */
 const TYPE_ASSERTION_PREDICATE_URIS = new Set<string>(FCP_TYPE_ASSERTION_PREDICATES);
-
-const CANONICAL_INVERSE_PREDICATES_BY_INVERSE_IRI: Record<string, string> = Object.fromEntries(
-  FCP_CANONICAL_INVERSE_PREDICATES.map((rule) => [rule.inversePredicateIri, rule.canonicalPredicateIri]),
-);
 
 const EXACT_STANDARD_URIS_BY_ENTITY_TYPE: Record<string, Set<string>> = Object.fromEntries(
   Object.entries(FIDE_ENTITY_TYPES).map(([entityType, spec]) => {
@@ -48,5 +43,4 @@ export const STATEMENT_PREDICATE_POLICY_CONSTANTS = {
   forbiddenPredicateRules: FORBIDDEN_PREDICATE_REASONS_BY_IRI,
   typeAssertionPredicateUris: TYPE_ASSERTION_PREDICATE_URIS,
   exactStandardUrisByEntityType: EXACT_STANDARD_URIS_BY_ENTITY_TYPE,
-  canonicalInversePredicatesByInverseIri: CANONICAL_INVERSE_PREDICATES_BY_INVERSE_IRI,
 } as const;

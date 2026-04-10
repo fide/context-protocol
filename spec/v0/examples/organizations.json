@@ -1,0 +1,124 @@
+{
+  "$schema": "https://raw.githubusercontent.com/fide/context-protocol/refs/heads/main/spec/v0/examples/example.schema.json",
+  "$id": "https://raw.githubusercontent.com/fide/context-protocol/refs/heads/main/spec/v0/examples/organizations.json",
+  "title": "Organizations",
+  "description": "Modeling organizational structure, founding, roles, and inter-org relationships.",
+  "specVersion": "0",
+  "tags": ["organization", "subsidiary", "classification"],
+  "statements": [
+    {
+      "batch_index": 1,
+      "notes": "Name the parent organization.",
+      "subject": {
+        "entityType": "Organization",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://en.wikipedia.org/wiki/Alphabet_Inc."
+      },
+      "predicate": {
+        "entityType": "Concept",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://schema.org/name"
+      },
+      "object": {
+        "entityType": "TextLiteral",
+        "referenceType": "TextLiteral",
+        "referenceIdentifier": "Alphabet Inc."
+      }
+    },
+    {
+      "batch_index": 2,
+      "notes": "Name the subsidiary.",
+      "subject": {
+        "entityType": "Organization",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://en.wikipedia.org/wiki/Google_DeepMind"
+      },
+      "predicate": {
+        "entityType": "Concept",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://schema.org/name"
+      },
+      "object": {
+        "entityType": "TextLiteral",
+        "referenceType": "TextLiteral",
+        "referenceIdentifier": "Google DeepMind"
+      }
+    },
+    {
+      "batch_index": 3,
+      "notes": "Part-whole: parent org contains the subsidiary. Uses schema:hasPart per FCP canonical direction policy.",
+      "subject": {
+        "entityType": "Organization",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://en.wikipedia.org/wiki/Alphabet_Inc."
+      },
+      "predicate": {
+        "entityType": "Concept",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://schema.org/hasPart"
+      },
+      "object": {
+        "entityType": "Organization",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://en.wikipedia.org/wiki/Google_DeepMind"
+      }
+    },
+    {
+      "batch_index": 4,
+      "notes": "Link the founder. This is a Link pattern (entity-to-entity relationship), not an Action.",
+      "subject": {
+        "entityType": "Organization",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://en.wikipedia.org/wiki/Google_DeepMind"
+      },
+      "predicate": {
+        "entityType": "Concept",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://schema.org/founder"
+      },
+      "object": {
+        "entityType": "Person",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://en.wikipedia.org/wiki/Demis_Hassabis"
+      }
+    },
+    {
+      "batch_index": 5,
+      "notes": "A rich description for the subsidiary. Long-form text is a normal TextLiteral attribute.",
+      "subject": {
+        "entityType": "Organization",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://en.wikipedia.org/wiki/Google_DeepMind"
+      },
+      "predicate": {
+        "entityType": "Concept",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://schema.org/description"
+      },
+      "object": {
+        "entityType": "TextLiteral",
+        "referenceType": "TextLiteral",
+        "referenceIdentifier": "A British-American artificial intelligence research laboratory and subsidiary of Alphabet Inc."
+      }
+    },
+    {
+      "batch_index": 6,
+      "notes": "Classify the org using Wikidata's 'instance of' property (wdt:P31). The object is a Concept representing 'artificial intelligence laboratory'.",
+      "subject": {
+        "entityType": "Organization",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://en.wikipedia.org/wiki/Google_DeepMind"
+      },
+      "predicate": {
+        "entityType": "Concept",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://www.wikidata.org/prop/direct/P31"
+      },
+      "object": {
+        "entityType": "Concept",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "http://www.wikidata.org/entity/Q1323314"
+      }
+    }
+  ]
+}

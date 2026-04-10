@@ -78,22 +78,20 @@ export {
   FCP_PREDICATE_ROLE,
   FCP_FORBIDDEN_PREDICATES,
   FCP_TYPE_ASSERTION_PREDICATES,
-  FCP_STATEMENT_GUIDE_RULES,
-  FCP_CANONICAL_INVERSE_PREDICATES,
+  FCP_STATEMENT_GUIDE_EXAMPLES,
 } from "./spec/index.js";
 
 export type {
   FcpPredicateRole,
   FcpForbiddenPredicateRule,
-  FcpStatementGuideRule,
-  FcpCanonicalInversePredicateRule,
+  FcpStatementGuideExample,
 } from "./spec/index.js";
 
 // Policies (used by downstream SDKs/CLIs)
 export { enforceStatementPredicateBatchPolicy } from "./statement/policy/enforceStatementPredicateBatchPolicy.js";
 export {
-  STATEMENT_GUIDE_RULES,
+  STATEMENT_GUIDE_EXAMPLES,
 } from "./statement/policy/statementPredicatePolicyConstants.js";
 export type {
-  StatementGuideRule,
+  StatementGuideExample,
 } from "./statement/policy/statementPredicatePolicyConstants.js";

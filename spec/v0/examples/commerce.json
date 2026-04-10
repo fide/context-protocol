@@ -1,0 +1,162 @@
+{
+  "$schema": "https://raw.githubusercontent.com/fide/context-protocol/refs/heads/main/spec/v0/examples/example.schema.json",
+  "$id": "https://raw.githubusercontent.com/fide/context-protocol/refs/heads/main/spec/v0/examples/commerce.json",
+  "title": "Commerce",
+  "description": "Modeling business interactions: actions with agents and participants, budget proposals, and action status.",
+  "specVersion": "0",
+  "tags": ["commerce", "action", "negotiation"],
+  "statements": [
+    {
+      "batch_index": 1,
+      "notes": "Name the client organization.",
+      "subject": {
+        "entityType": "Organization",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://example.com/orgs/acme-corp"
+      },
+      "predicate": {
+        "entityType": "Concept",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://schema.org/name"
+      },
+      "object": {
+        "entityType": "TextLiteral",
+        "referenceType": "TextLiteral",
+        "referenceIdentifier": "Acme Corp"
+      }
+    },
+    {
+      "batch_index": 2,
+      "notes": "Name the vendor organization.",
+      "subject": {
+        "entityType": "Organization",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://example.com/orgs/widgets-inc"
+      },
+      "predicate": {
+        "entityType": "Concept",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://schema.org/name"
+      },
+      "object": {
+        "entityType": "TextLiteral",
+        "referenceType": "TextLiteral",
+        "referenceIdentifier": "Widgets Inc"
+      }
+    },
+    {
+      "batch_index": 3,
+      "notes": "An engagement Action representing an ongoing deal. Actions are agent-driven; here the client is the agent.",
+      "subject": {
+        "entityType": "Action",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://example.com/engagements/acme-widgets-2026"
+      },
+      "predicate": {
+        "entityType": "Concept",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://schema.org/agent"
+      },
+      "object": {
+        "entityType": "Organization",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://example.com/orgs/acme-corp"
+      }
+    },
+    {
+      "batch_index": 4,
+      "notes": "The vendor participates in the engagement action.",
+      "subject": {
+        "entityType": "Action",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://example.com/engagements/acme-widgets-2026"
+      },
+      "predicate": {
+        "entityType": "Concept",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://schema.org/participant"
+      },
+      "object": {
+        "entityType": "Organization",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://example.com/orgs/widgets-inc"
+      }
+    },
+    {
+      "batch_index": 5,
+      "notes": "A budget proposal Action by the client. Separate from the engagement itself.",
+      "subject": {
+        "entityType": "Action",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://example.com/engagements/acme-widgets-2026#budget-1"
+      },
+      "predicate": {
+        "entityType": "Concept",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://schema.org/agent"
+      },
+      "object": {
+        "entityType": "Organization",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://example.com/orgs/acme-corp"
+      }
+    },
+    {
+      "batch_index": 6,
+      "notes": "The budget proposal's max value. Uses a NetworkResource anchor for the budget cap, with an IntegerLiteral value.",
+      "subject": {
+        "entityType": "NetworkResource",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://example.com/engagements/acme-widgets-2026#budget-1-cap"
+      },
+      "predicate": {
+        "entityType": "Concept",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://schema.org/maxValue"
+      },
+      "object": {
+        "entityType": "IntegerLiteral",
+        "referenceType": "IntegerLiteral",
+        "referenceIdentifier": "50000"
+      }
+    },
+    {
+      "batch_index": 7,
+      "notes": "The budget proposal's currency.",
+      "subject": {
+        "entityType": "NetworkResource",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://example.com/engagements/acme-widgets-2026#budget-1-cap"
+      },
+      "predicate": {
+        "entityType": "Concept",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://schema.org/priceCurrency"
+      },
+      "object": {
+        "entityType": "TextLiteral",
+        "referenceType": "TextLiteral",
+        "referenceIdentifier": "USD"
+      }
+    },
+    {
+      "batch_index": 8,
+      "notes": "Mark the budget action as still potential (not yet accepted). Uses schema.org's ActionStatus enum via NetworkResource.",
+      "subject": {
+        "entityType": "Action",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://example.com/engagements/acme-widgets-2026#budget-1"
+      },
+      "predicate": {
+        "entityType": "Concept",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://schema.org/actionStatus"
+      },
+      "object": {
+        "entityType": "NetworkResource",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://schema.org/PotentialActionStatus"
+      }
+    }
+  ]
+}

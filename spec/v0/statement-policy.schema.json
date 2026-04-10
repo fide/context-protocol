@@ -5,16 +5,19 @@
   "type": "object",
   "additionalProperties": false,
   "required": [
+    "$schema",
+    "$id",
     "namespaceUrl",
     "specVersion",
     "specDate",
     "predicateRole",
     "forbiddenPredicates",
     "typeAssertionPredicates",
-    "guideRules",
-    "canonicalInversePredicates"
+    "guideExamples"
   ],
   "properties": {
+    "$schema": { "type": "string", "format": "uri" },
+    "$id": { "type": "string", "format": "uri" },
     "namespaceUrl": {
       "type": "string",
       "format": "uri",
@@ -45,36 +48,74 @@
         "pattern": "^https://"
       }
     },
-    "guideRules": {
+    "guideExamples": {
       "type": "array",
       "items": {
-        "$ref": "#/$defs/rule"
-      }
-    },
-    "canonicalInversePredicates": {
-      "type": "array",
-      "items": {
-        "$ref": "#/$defs/canonicalInversePredicate"
+        "$ref": "#/$defs/guideExample"
       }
     }
   },
   "$defs": {
-    "rule": {
+    "statementRole": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["id", "description", "path"],
+      "required": ["entityType", "referenceType", "referenceIdentifier"],
       "properties": {
-        "id": {
+        "entityType": {
           "type": "string",
           "minLength": 1
         },
-        "description": {
+        "referenceType": {
           "type": "string",
           "minLength": 1
         },
-        "path": {
+        "referenceIdentifier": {
           "type": "string",
           "minLength": 1
+        }
+      }
+    },
+    "guideStatement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["subject", "predicate", "object"],
+      "properties": {
+        "subject": {
+          "$ref": "#/$defs/statementRole"
+        },
+        "predicate": {
+          "$ref": "#/$defs/statementRole"
+        },
+        "object": {
+          "$ref": "#/$defs/statementRole"
+        }
+      }
+    },
+    "guideExample": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ruleId", "strength", "reason", "discouraged", "preferred"],
+      "properties": {
+        "ruleId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "strength": {
+          "type": "string",
+          "enum": ["SHOULD", "MAY"]
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "discouraged": {
+          "$ref": "#/$defs/guideStatement"
+        },
+        "preferred": {
+          "oneOf": [
+            { "$ref": "#/$defs/guideStatement" },
+            { "type": "null" }
+          ]
         }
       }
     },
@@ -112,41 +153,6 @@
         },
         "referenceType": {
           "const": "NetworkResource"
-        },
-        "description": {
-          "type": "string",
-          "minLength": 1
-        },
-        "path": {
-          "type": "string",
-          "minLength": 1
-        }
-      }
-    },
-    "canonicalInversePredicate": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "canonicalPredicateIri",
-        "inversePredicateIri",
-        "strength",
-        "description",
-        "path"
-      ],
-      "properties": {
-        "canonicalPredicateIri": {
-          "type": "string",
-          "format": "uri",
-          "pattern": "^https://"
-        },
-        "inversePredicateIri": {
-          "type": "string",
-          "format": "uri",
-          "pattern": "^https://"
-        },
-        "strength": {
-          "type": "string",
-          "enum": ["SHOULD", "MAY"]
         },
         "description": {
           "type": "string",

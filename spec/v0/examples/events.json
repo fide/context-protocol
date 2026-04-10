@@ -1,0 +1,124 @@
+{
+  "$schema": "https://raw.githubusercontent.com/fide/context-protocol/refs/heads/main/spec/v0/examples/example.schema.json",
+  "$id": "https://raw.githubusercontent.com/fide/context-protocol/refs/heads/main/spec/v0/examples/events.json",
+  "title": "Events",
+  "description": "Modeling events with location, time, and organizer relationships.",
+  "specVersion": "0",
+  "tags": ["event", "place", "temporal"],
+  "statements": [
+    {
+      "batch_index": 1,
+      "notes": "Name the event.",
+      "subject": {
+        "entityType": "Event",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://example.com/events/turing-symposium-2026"
+      },
+      "predicate": {
+        "entityType": "Concept",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://schema.org/name"
+      },
+      "object": {
+        "entityType": "TextLiteral",
+        "referenceType": "TextLiteral",
+        "referenceIdentifier": "Turing Symposium 2026"
+      }
+    },
+    {
+      "batch_index": 2,
+      "notes": "Event start date as entity time (the event itself is temporally bounded).",
+      "subject": {
+        "entityType": "Event",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://example.com/events/turing-symposium-2026"
+      },
+      "predicate": {
+        "entityType": "Concept",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://schema.org/startDate"
+      },
+      "object": {
+        "entityType": "DateLiteral",
+        "referenceType": "DateLiteral",
+        "referenceIdentifier": "2026-06-23"
+      }
+    },
+    {
+      "batch_index": 3,
+      "notes": "Event end date.",
+      "subject": {
+        "entityType": "Event",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://example.com/events/turing-symposium-2026"
+      },
+      "predicate": {
+        "entityType": "Concept",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://schema.org/endDate"
+      },
+      "object": {
+        "entityType": "DateLiteral",
+        "referenceType": "DateLiteral",
+        "referenceIdentifier": "2026-06-25"
+      }
+    },
+    {
+      "batch_index": 4,
+      "notes": "Link the event to its physical location. Place is for spatial contexts that can contain presence.",
+      "subject": {
+        "entityType": "Event",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://example.com/events/turing-symposium-2026"
+      },
+      "predicate": {
+        "entityType": "Concept",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://schema.org/location"
+      },
+      "object": {
+        "entityType": "Place",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://en.wikipedia.org/wiki/Bletchley_Park"
+      }
+    },
+    {
+      "batch_index": 5,
+      "notes": "Name the venue.",
+      "subject": {
+        "entityType": "Place",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://en.wikipedia.org/wiki/Bletchley_Park"
+      },
+      "predicate": {
+        "entityType": "Concept",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://schema.org/name"
+      },
+      "object": {
+        "entityType": "TextLiteral",
+        "referenceType": "TextLiteral",
+        "referenceIdentifier": "Bletchley Park"
+      }
+    },
+    {
+      "batch_index": 6,
+      "notes": "Link the event to its organizer. This is a Link pattern (entity relationship).",
+      "subject": {
+        "entityType": "Event",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://example.com/events/turing-symposium-2026"
+      },
+      "predicate": {
+        "entityType": "Concept",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://schema.org/organizer"
+      },
+      "object": {
+        "entityType": "Organization",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://en.wikipedia.org/wiki/Royal_Society"
+      }
+    }
+  ]
+}
