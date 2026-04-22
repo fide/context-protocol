@@ -14,8 +14,8 @@
         "referenceType": "NetworkResource",
         "referenceIdentifier": "https://www.linkedin.com/in/ada-lovelace/"
       },
-      "predicate": {
-        "entityType": "Concept",
+      "property": {
+        "entityType": "DirectionalProperty",
         "referenceType": "NetworkResource",
         "referenceIdentifier": "https://schema.org/name"
       },
@@ -33,8 +33,8 @@
         "referenceType": "NetworkResource",
         "referenceIdentifier": "https://www.linkedin.com/company/analytical-engines-ltd/"
       },
-      "predicate": {
-        "entityType": "Concept",
+      "property": {
+        "entityType": "DirectionalProperty",
         "referenceType": "NetworkResource",
         "referenceIdentifier": "https://schema.org/name"
       },
@@ -52,8 +52,8 @@
         "referenceType": "NetworkResource",
         "referenceIdentifier": "https://www.linkedin.com/in/ada-lovelace/"
       },
-      "predicate": {
-        "entityType": "Concept",
+      "property": {
+        "entityType": "DirectionalProperty",
         "referenceType": "NetworkResource",
         "referenceIdentifier": "https://schema.org/worksFor"
       },
@@ -71,8 +71,8 @@
         "referenceType": "Statement",
         "referenceIdentifier": "@3"
       },
-      "predicate": {
-        "entityType": "Concept",
+      "property": {
+        "entityType": "DirectionalProperty",
         "referenceType": "NetworkResource",
         "referenceIdentifier": "https://schema.org/validFrom"
       },
@@ -90,8 +90,8 @@
         "referenceType": "Statement",
         "referenceIdentifier": "@3"
       },
-      "predicate": {
-        "entityType": "Concept",
+      "property": {
+        "entityType": "DirectionalProperty",
         "referenceType": "NetworkResource",
         "referenceIdentifier": "https://schema.org/validThrough"
       },
@@ -109,8 +109,8 @@
         "referenceType": "Statement",
         "referenceIdentifier": "@3"
       },
-      "predicate": {
-        "entityType": "Concept",
+      "property": {
+        "entityType": "DirectionalProperty",
         "referenceType": "NetworkResource",
         "referenceIdentifier": "https://schema.org/jobTitle"
       },

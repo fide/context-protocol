@@ -3,8 +3,8 @@
 Canonical protocol data lives under versioned folders:
 
 - vocabulary source of truth now lives in [github.com/fide/vocabulary](https://github.com/fide/vocabulary).
-- `v0/predicate-prefixes.json`: source of truth for CURIE prefix mappings.
-- `v0/predicate-prefixes.schema.json`: schema rules for predicate prefix mappings.
+- `v0/property-prefixes.json`: source of truth for CURIE prefix mappings.
+- `v0/property-prefixes.schema.json`: schema rules for property prefix mappings.
 - `v0/statement.schema.json`: canonical statement object schema for FCP v0.
 
 Generated SDK/docs artifacts now derive from standalone `fide-id` and `fide-vocabulary` packages.

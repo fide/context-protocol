@@ -1,19 +1,19 @@
 import { FCP_CURIE_PREFIX_IRIS } from "../constants.js";
-import type { ExpandPredicateReferenceIdentifierOptions } from "../types.js";
+import type { ExpandpropertyReferenceIdentifierOptions } from "../types.js";
 
 /**
- * Expand a prefixed predicate token (e.g. `schema:name`) to a full IRI.
+ * Expand a prefixed property token (e.g. `schema:name`) to a full IRI.
  *
  * If `referenceIdentifier` is already an absolute URL, it is returned unchanged.
  * If `referenceIdentifier` contains a prefix not found in the configured map, throws.
  *
- * @param referenceIdentifier Predicate reference identifier token.
+ * @param referenceIdentifier Property reference identifier token.
  * @param options Prefix override options.
  * @returns Expanded full IRI or original absolute URL.
  */
-export function expandPredicateReferenceIdentifier(
+export function expandpropertyReferenceIdentifier(
   referenceIdentifier: string,
-  options?: ExpandPredicateReferenceIdentifierOptions,
+  options?: ExpandpropertyReferenceIdentifierOptions,
 ): string {
   if (/^https?:\/\//i.test(referenceIdentifier)) {
     return referenceIdentifier;
@@ -37,7 +37,7 @@ export function expandPredicateReferenceIdentifier(
   const base = map[prefix];
   if (!base) {
     throw new Error(
-      `Unknown predicate prefix: ${prefix}. Provide a full URL or configure this prefix explicitly.`,
+      `Unknown property prefix: ${prefix}. Provide a full URL or configure this prefix explicitly.`,
     );
   }
 

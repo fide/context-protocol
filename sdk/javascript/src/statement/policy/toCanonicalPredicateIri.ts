@@ -1,18 +1,18 @@
 import {
-  expandPredicateReferenceIdentifier,
+  expandpropertyReferenceIdentifier,
 } from "../../predicate-vocabulary/index.js";
-import { normalizePredicateReferenceIdentifier } from "@fide-work/id";
+import { normalizePropertyReferenceIdentifier } from "@fide-work/id";
 
 /**
- * Canonicalize a predicate token to an absolute predicate IRI.
+ * Canonicalize a property token to an absolute property IRI.
  *
  * Accepts shorthand (for example `schema:name`) and returns `null`
- * when the value cannot be normalized as a valid predicate IRI.
+ * when the value cannot be normalized as a valid property IRI.
  */
-export function toCanonicalPredicateIri(predicateReferenceIdentifier: string): string | null {
+export function toCanonicalPropertyIri(propertyReferenceIdentifier: string): string | null {
   try {
-    const expanded = expandPredicateReferenceIdentifier(predicateReferenceIdentifier);
-    return normalizePredicateReferenceIdentifier(expanded);
+    const expanded = expandpropertyReferenceIdentifier(propertyReferenceIdentifier);
+    return normalizePropertyReferenceIdentifier(expanded);
   } catch {
     return null;
   }

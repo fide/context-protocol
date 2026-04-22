@@ -1,6 +1,6 @@
 {
   "name": "@fide-work/context-protocol",
-  "version": "0.0.0-alpha.6",
+  "version": "0.0.0-alpha.7",
   "description": "Fide Context Protocol SDK (v0)",
   "license": "Apache-2.0",
   "author": "Fide Holdings, Inc. (https://github.com/fide)",
@@ -41,6 +41,7 @@
   },
   "scripts": {
     "generate:spec": "node ../../scripts/generate-sdk/spec-module.mjs",
+    "generate:examples": "node ../../scripts/generate-sdk/examples-module.mjs",
     "build": "tsc -p tsconfig.json",
     "check-types": "tsc --noEmit",
     "generate:docs": "node ../../scripts/generate-docs/sdk-reference.mjs",

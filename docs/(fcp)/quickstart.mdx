@@ -20,7 +20,7 @@ const statement = await buildStatement({
     referenceType: "NetworkResource",
     referenceIdentifier: "https://orcid.org/0000-0002-1825-0097",
   },
-  predicate: {
+  property: {
     referenceIdentifier: "https://schema.org/name",
   },
   object: {
@@ -36,7 +36,7 @@ const statement = await buildStatement({
 The SDK derives deterministic Fide IDs for:
 
 - the subject
-- the predicate
+- the property
 - the object
 - the statement itself
 
@@ -44,11 +44,11 @@ It also returns a complete FCP statement object with the required identifiers an
 
 ## Validate The Result
 
-Use the SDK when you need to enforce FCP structure and predicate policy before writing statements to storage or passing them to downstream graph systems.
+Use the SDK when you need to enforce FCP structure and property policy before writing statements to storage or passing them to downstream graph systems.
 
 The most common errors are:
 
-- non-canonical predicate identifiers
+- non-canonical property identifiers
 - invalid entity-type/reference-type combinations
 - missing or malformed reference identifiers
 

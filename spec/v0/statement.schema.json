@@ -8,8 +8,8 @@
   "required": [
     "subjectFideId",
     "subjectReferenceIdentifier",
-    "predicateFideId",
-    "predicateReferenceIdentifier",
+    "propertyFideId",
+    "propertyReferenceIdentifier",
     "objectFideId",
     "objectReferenceIdentifier"
   ],
@@ -20,10 +20,10 @@
     "subjectReferenceIdentifier": {
       "$ref": "#/$defs/referenceIdentifier"
     },
-    "predicateFideId": {
+    "propertyFideId": {
       "$ref": "#/$defs/fideId"
     },
-    "predicateReferenceIdentifier": {
+    "propertyReferenceIdentifier": {
       "$ref": "#/$defs/referenceIdentifier"
     },
     "objectFideId": {

@@ -10,13 +10,13 @@ import {
 export type StatementGuideExample = FcpStatementGuideExample;
 
 const FORBIDDEN_PREDICATE_REASONS_BY_IRI: Record<string, string> = Object.fromEntries(
-  FCP_FORBIDDEN_PREDICATES.map((rule) => [rule.predicateIri, rule.description]),
+  FCP_FORBIDDEN_PREDICATES.map((rule) => [rule.propertyIri, rule.description]),
 );
 
 export const STATEMENT_GUIDE_EXAMPLES: readonly StatementGuideExample[] = FCP_STATEMENT_GUIDE_EXAMPLES;
 
 /**
- * Predicates treated as type assertion channels.
+ * Properties treated as type assertion channels.
  */
 const TYPE_ASSERTION_PREDICATE_URIS = new Set<string>(FCP_TYPE_ASSERTION_PREDICATES);
 
@@ -37,10 +37,10 @@ const EXACT_STANDARD_URIS_BY_ENTITY_TYPE: Record<string, Set<string>> = Object.f
 );
 
 /**
- * Shared constants for statement predicate policy checks.
+ * Shared constants for statement property policy checks.
  */
 export const STATEMENT_PREDICATE_POLICY_CONSTANTS = {
-  forbiddenPredicateRules: FORBIDDEN_PREDICATE_REASONS_BY_IRI,
-  typeAssertionPredicateUris: TYPE_ASSERTION_PREDICATE_URIS,
+  forbiddenPropertyRules: FORBIDDEN_PREDICATE_REASONS_BY_IRI,
+  typeAssertionPropertyUris: TYPE_ASSERTION_PREDICATE_URIS,
   exactStandardUrisByEntityType: EXACT_STANDARD_URIS_BY_ENTITY_TYPE,
 } as const;

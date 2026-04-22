@@ -4,33 +4,43 @@
   "namespaceUrl": "https://fide.work/context-protocol/v0/",
   "specVersion": "0",
   "specDate": "2026-04-09",
-  "predicateRole": {
-    "entityType": "Concept",
+  "propertyRole": {
+    "entityTypes": [
+      "DirectionalProperty",
+      "SymmetricProperty"
+    ],
     "referenceType": "NetworkResource",
-    "description": "Predicate must use entityType=Concept and referenceType=NetworkResource.",
+    "description": "Property must use entityType=DirectionalProperty or SymmetricProperty and referenceType=NetworkResource.",
     "path": "/fcp/specification/statements"
   },
-  "forbiddenPredicates": [
+  "statementNormalizationRules": [
     {
-      "id": "fcp.predicate.disallow-schema-identifier",
-      "predicateIri": "https://schema.org/identifier",
-      "description": "Entity identifiers are implicit in Fide IDs and reference identifiers; do not add redundant identifier predicates.",
+      "id": "fcp.statement.canonicalize-symmetric-property-order",
+      "description": "When a statement uses a symmetric property, subjectFideId and objectFideId MUST be ordered canonically before constructing the statement reference. Canonical ordering MUST be determined by lexicographic comparison of the canonical Fide ID strings.",
+      "path": "/fcp/specification/statements"
+    }
+  ],
+  "forbiddenProperties": [
+    {
+      "id": "fcp.property.disallow-schema-identifier",
+      "propertyIri": "https://schema.org/identifier",
+      "description": "Entity identifiers are implicit in Fide IDs and reference identifiers; do not add redundant identifier properties.",
       "path": "/fcp/specification/statements"
     },
     {
-      "id": "fcp.predicate.disallow-schema-sameAs",
-      "predicateIri": "https://schema.org/sameAs",
+      "id": "fcp.property.disallow-schema-sameAs",
+      "propertyIri": "https://schema.org/sameAs",
       "description": "Use http://www.w3.org/2002/07/owl#sameAs for strict identity assertions; https://schema.org/sameAs is not allowed in FCP statements.",
       "path": "/fcp/specification/statements"
     }
   ],
-  "typeAssertionPredicates": [
+  "typeAssertionProperties": [
     "https://www.w3.org/1999/02/22-rdf-syntax-ns#type",
     "https://schema.org/additionalType"
   ],
   "guideExamples": [
     {
-      "ruleId": "fcp.predicate.disallow-redundant-type-assertion",
+      "ruleId": "fcp.property.disallow-redundant-type-assertion",
       "strength": "SHOULD",
       "reason": "rdf:type or schema:additionalType should only be used to assert a type not already encoded by the subject's entity type. Redundancy is determined by the Fide Vocabulary: if the entity type lists the asserted type under its standards with standardFit 'Exact', the assertion is already implicit and should be omitted.",
       "discouraged": {
@@ -39,8 +49,8 @@
           "referenceType": "NetworkResource",
           "referenceIdentifier": "https://en.wikipedia.org/wiki/Ada_Lovelace"
         },
-        "predicate": {
-          "entityType": "Concept",
+        "property": {
+          "entityType": "DirectionalProperty",
           "referenceType": "NetworkResource",
           "referenceIdentifier": "https://www.w3.org/1999/02/22-rdf-syntax-ns#type"
         },
@@ -62,8 +72,8 @@
           "referenceType": "NetworkResource",
           "referenceIdentifier": "https://example.com/papers/on-computable-numbers"
         },
-        "predicate": {
-          "entityType": "Concept",
+        "property": {
+          "entityType": "DirectionalProperty",
           "referenceType": "NetworkResource",
           "referenceIdentifier": "https://schema.org/isPartOf"
         },
@@ -79,8 +89,8 @@
           "referenceType": "NetworkResource",
           "referenceIdentifier": "https://example.com/collections/foundational-cs"
         },
-        "predicate": {
-          "entityType": "Concept",
+        "property": {
+          "entityType": "DirectionalProperty",
           "referenceType": "NetworkResource",
           "referenceIdentifier": "https://schema.org/hasPart"
         },

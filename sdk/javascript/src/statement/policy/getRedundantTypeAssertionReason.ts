@@ -1,20 +1,20 @@
 import type { StatementInput } from "../types.js";
 import { STATEMENT_PREDICATE_POLICY_CONSTANTS } from "./statementPredicatePolicyConstants.js";
-import { toCanonicalPredicateIri } from "./toCanonicalPredicateIri.js";
+import { toCanonicalPropertyIri } from "./toCanonicalPredicateIri.js";
 
 /**
  * Return the policy reason when a statement asserts a redundant base type.
  *
  * A type assertion is redundant only when:
- * - predicate is a supported type-assertion predicate,
+ * - property is a supported type-assertion property,
  * - subject entity type has one or more exact standard mappings,
  * - object equals one of those exact mapped standard IRIs.
  */
 export function getRedundantTypeAssertionReason(input: StatementInput): string | null {
-  const predicateIri = toCanonicalPredicateIri(input.predicate.referenceIdentifier);
+  const propertyIri = toCanonicalPropertyIri(input.property.referenceIdentifier);
   if (
-    !predicateIri ||
-    !STATEMENT_PREDICATE_POLICY_CONSTANTS.typeAssertionPredicateUris.has(predicateIri)
+    !propertyIri ||
+    !STATEMENT_PREDICATE_POLICY_CONSTANTS.typeAssertionPropertyUris.has(propertyIri)
   ) {
     return null;
   }
@@ -25,7 +25,7 @@ export function getRedundantTypeAssertionReason(input: StatementInput): string |
     return null;
   }
 
-  const objectIri = toCanonicalPredicateIri(input.object.referenceIdentifier);
+  const objectIri = toCanonicalPropertyIri(input.object.referenceIdentifier);
   if (!objectIri || !exactStandardUris.has(objectIri)) {
     return null;
   }

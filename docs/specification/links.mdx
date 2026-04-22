@@ -3,7 +3,7 @@ title: Links
 description: Link statement pattern rules.
 ---
 
-Link statements describe how one entity is connected to another. In this pattern, the predicate names the relationship and the object identifies the related entity. The object is used as another entity in the relationship, not as the value of a property.
+Link statements describe how one entity is connected to another. In this pattern, the property names the relationship and the object identifies the related entity. The object is used as another entity in the relationship, not as the value of a property.
 
 - SHOULD use this pattern when the goal of the statement is to relate the subject to another entity as an entity.
 - SHOULD NOT author both directions of the same inverse relationship for the same fact.
@@ -12,7 +12,7 @@ Link statements describe how one entity is connected to another. In this pattern
 
 **Subject:** The entity the link starts from.
 
-**Predicate:** The relationship being described.
+**Property:** The relationship being described.
 
 **Object:** The entity linked to the subject.
 
@@ -50,7 +50,7 @@ Person | schema:name | "Alice"
 
 ## Inverse Direction [#inverse-direction]
 
-Some link predicates have inverse forms, such as `schema:hasPart` and `schema:isPartOf`.
+Some link properties have inverse forms, such as `schema:hasPart` and `schema:isPartOf`.
 
 Both directions may be valid at the protocol level, but producers SHOULD choose one canonical authored direction for a given fact and avoid storing both directions redundantly.
 

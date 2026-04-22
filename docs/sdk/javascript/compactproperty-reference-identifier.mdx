@@ -1,0 +1,11 @@
+---
+title: "compactpropertyReferenceIdentifier"
+description: "Compact a full property IRI (e.g. `https://schema.org/name`) to CURIE form.
+
+Returns the original input unchanged when it does not match a configured prefix."
+full: true
+---
+
+import { SDKFunctionPageInteractive } from '@/components/sdk-layout/sdk-function-page-interactive';
+
+<SDKFunctionPageInteractive data={{"name":"compactpropertyReferenceIdentifier","description":"Compact a full property IRI (e.g. `https://schema.org/name`) to CURIE form.\n\nReturns the original input unchanged when it does not match a configured prefix.","section":"Predicate Vocabulary","signatures":[{"description":"Compact a full property IRI (e.g. `https://schema.org/name`) to CURIE form.\n\nReturns the original input unchanged when it does not match a configured prefix.","parameters":[{"name":"referenceIdentifier","type":"string","optional":false,"description":"Property reference identifier token."},{"name":"options","type":"CompactpropertyReferenceIdentifierOptions","optional":true,"description":"Prefix override options."}],"returnType":"string","returnDescription":"CURIE form or original input.","infoCallout":{"title":"Node Runtime Required","body":"This function requires a Node.js runtime and is disabled in the browser docs preview."},"referencedTypes":[{"name":"CompactpropertyReferenceIdentifierOptions","description":"","type":"CompactpropertyReferenceIdentifierOptions","entries":{"prefixes":{"description":"Additional/override prefix mappings.","type":"Record<string, string>","required":false}}}]}],"constants":[],"referencedTypes":[{"name":"CompactpropertyReferenceIdentifierOptions","description":"","type":"CompactpropertyReferenceIdentifierOptions","entries":{"prefixes":{"description":"Additional/override prefix mappings.","type":"Record<string, string>","required":false}}}]}} />

@@ -13,18 +13,18 @@ checks += 1;
 try {
     const statement = await buildStatement({
         subject: { referenceIdentifier: 'https://x.com/alice', entityType: 'Person', referenceType: 'NetworkResource' },
-        predicate: { referenceIdentifier: 'https://schema.org/name', entityType: 'Concept', referenceType: 'NetworkResource' },
+        property: { referenceIdentifier: 'https://schema.org/name', entityType: 'DirectionalProperty', referenceType: 'NetworkResource' },
         object: { referenceIdentifier: 'Alice', entityType: 'TextLiteral', referenceType: 'TextLiteral' }
     });
 
     if (!statement.subjectFideId || !statement.subjectReferenceIdentifier ||
-        !statement.predicateFideId || !statement.predicateReferenceIdentifier ||
+        !statement.propertyFideId || !statement.propertyReferenceIdentifier ||
         !statement.objectFideId || !statement.objectReferenceIdentifier ||
         !statement.statementFideId) {
         failures += 1;
         console.error("  ❌ Missing required fields");
     } else if (!statement.subjectFideId.startsWith('did:fide:0x') ||
-        !statement.predicateFideId.startsWith('did:fide:0x') ||
+        !statement.propertyFideId.startsWith('did:fide:0x') ||
         !statement.objectFideId.startsWith('did:fide:0x') ||
         !statement.statementFideId.startsWith('did:fide:0x')) {
         failures += 1;
@@ -49,7 +49,7 @@ try {
             entityType: "Person",
             referenceType: "Statement"
         },
-        predicate: { referenceIdentifier: "https://schema.org/name", entityType: "Concept", referenceType: "NetworkResource" },
+        property: { referenceIdentifier: "https://schema.org/name", entityType: "DirectionalProperty", referenceType: "NetworkResource" },
         object: { referenceIdentifier: "Alice", entityType: "TextLiteral", referenceType: "TextLiteral" }
     });
     failures += 1;
@@ -69,7 +69,7 @@ checks += 1;
 try {
     await buildStatement({
         subject: { referenceIdentifier: 'https://x.com/alice' }, // Missing entityType, referenceType
-        predicate: { referenceIdentifier: 'https://schema.org/name', entityType: 'Concept', referenceType: 'NetworkResource' },
+        property: { referenceIdentifier: 'https://schema.org/name', entityType: 'DirectionalProperty', referenceType: 'NetworkResource' },
         object: { referenceIdentifier: 'Alice', entityType: 'TextLiteral', referenceType: 'TextLiteral' }
     });
     failures += 1;
@@ -83,60 +83,60 @@ try {
     }
 }
 
-// Test 4: Reject predicate shorthand (must be canonical URL)
-console.log("\n4. Testing rejection of predicate shorthand...");
+// Test 4: Reject property shorthand (must be canonical URL)
+console.log("\n4. Testing rejection of property shorthand...");
 checks += 1;
 try {
     await buildStatement({
         subject: { referenceIdentifier: 'https://x.com/alice', entityType: 'Person', referenceType: 'NetworkResource' },
-        predicate: { referenceIdentifier: 'schema:name', entityType: 'Concept', referenceType: 'NetworkResource' },
+        property: { referenceIdentifier: 'schema:name', entityType: 'DirectionalProperty', referenceType: 'NetworkResource' },
         object: { referenceIdentifier: 'Alice', entityType: 'TextLiteral', referenceType: 'TextLiteral' }
     });
     failures += 1;
-    console.error("  ❌ Should have rejected shorthand predicate");
+    console.error("  ❌ Should have rejected shorthand property");
 } catch (error) {
     if (error.message?.includes('canonical full URL') || error.message?.includes('Expected https URL')) {
-        console.log("  ✅ Correctly rejected shorthand predicate");
+        console.log("  ✅ Correctly rejected shorthand property");
     } else {
         failures += 1;
         console.error("  ❌ Wrong error:", error.message);
     }
 }
 
-// Test 5: Reject non-canonical predicate URL when normalization is disabled
-console.log("\n5. Testing predicate URL behavior without normalization...");
+// Test 5: Reject non-canonical property URL when normalization is disabled
+console.log("\n5. Testing property URL behavior without normalization...");
 checks += 1;
 try {
     await buildStatement({
         subject: { referenceIdentifier: "https://x.com/alice", entityType: "Person", referenceType: "NetworkResource" },
-        predicate: { referenceIdentifier: "HTTPS://SCHEMA.ORG/name?query=A#Frag", entityType: "Concept", referenceType: "NetworkResource" },
+        property: { referenceIdentifier: "HTTPS://SCHEMA.ORG/name?query=A#Frag", entityType: "DirectionalProperty", referenceType: "NetworkResource" },
         object: { referenceIdentifier: "Alice", entityType: "TextLiteral", referenceType: "TextLiteral" }
     });
     failures += 1;
-    console.error("  ❌ Should have rejected non-canonical predicate URL");
+    console.error("  ❌ Should have rejected non-canonical property URL");
 } catch (error) {
     if (error.message?.includes("Non-canonical")) {
-        console.log("  ✅ Correctly rejected non-canonical predicate URL");
+        console.log("  ✅ Correctly rejected non-canonical property URL");
     } else {
         failures += 1;
         console.error("  ❌ Wrong error:", error.message);
     }
 }
 
-// Test 6: Reject non-https predicate URL
-console.log("\n6. Testing rejection of non-https predicate URL...");
+// Test 6: Reject non-https property URL
+console.log("\n6. Testing rejection of non-https property URL...");
 checks += 1;
 try {
     await buildStatement({
         subject: { referenceIdentifier: "https://x.com/alice", entityType: "Person", referenceType: "NetworkResource" },
-        predicate: { referenceIdentifier: "http://schema.org/name", entityType: "Concept", referenceType: "NetworkResource" },
+        property: { referenceIdentifier: "http://schema.org/name", entityType: "DirectionalProperty", referenceType: "NetworkResource" },
         object: { referenceIdentifier: "Alice", entityType: "TextLiteral", referenceType: "TextLiteral" }
     });
     failures += 1;
-    console.error("  ❌ Should have rejected non-https predicate URL");
+    console.error("  ❌ Should have rejected non-https property URL");
 } catch (error) {
     if (error.message?.includes("Expected https URL")) {
-        console.log("  ✅ Correctly rejected non-https predicate URL");
+        console.log("  ✅ Correctly rejected non-https property URL");
     } else {
         failures += 1;
         console.error("  ❌ Wrong error:", error.message);
@@ -149,7 +149,7 @@ checks += 1;
 try {
     await buildStatement({
         subject: { referenceIdentifier: "HTTPS://X.COM:443/JeffBezos", entityType: "Person", referenceType: "NetworkResource" },
-        predicate: { referenceIdentifier: "https://schema.org/about", entityType: "Concept", referenceType: "NetworkResource" },
+        property: { referenceIdentifier: "https://schema.org/about", entityType: "DirectionalProperty", referenceType: "NetworkResource" },
         object: { referenceIdentifier: "HTTP://EXAMPLE.COM:80/Profile", entityType: "CreativeWork", referenceType: "NetworkResource" }
     });
     failures += 1;
@@ -169,7 +169,7 @@ checks += 1;
 try {
     const statement = await buildStatement({
         subject: { referenceIdentifier: "HTTPS://X.COM:443/JeffBezos", entityType: "Person", referenceType: "NetworkResource" },
-        predicate: { referenceIdentifier: "https://SCHEMA.ORG/name", entityType: "Concept", referenceType: "NetworkResource" },
+        property: { referenceIdentifier: "https://SCHEMA.ORG/name", entityType: "DirectionalProperty", referenceType: "NetworkResource" },
         object: { referenceIdentifier: "HTTP://EXAMPLE.COM:80/Profile", entityType: "CreativeWork", referenceType: "NetworkResource" }
     }, {
         normalizeReferenceIdentifier: true
@@ -181,9 +181,9 @@ try {
     } else if (statement.objectReferenceIdentifier !== "http://example.com/Profile") {
         failures += 1;
         console.error("  ❌ Object should have been normalized:", statement.objectReferenceIdentifier);
-    } else if (statement.predicateReferenceIdentifier !== "https://schema.org/name") {
+    } else if (statement.propertyReferenceIdentifier !== "https://schema.org/name") {
         failures += 1;
-        console.error("  ❌ Predicate should have been normalized:", statement.predicateReferenceIdentifier);
+        console.error("  ❌ Property should have been normalized:", statement.propertyReferenceIdentifier);
     } else {
         console.log("  ✅ Correctly normalized URL-like values");
     }
@@ -192,20 +192,20 @@ try {
     console.error("  ❌ Error:", error.message);
 }
 
-// Test 9: Reject invalid predicate URL
-console.log("\n9. Testing rejection of invalid predicate URL...");
+// Test 9: Reject invalid property URL
+console.log("\n9. Testing rejection of invalid property URL...");
 checks += 1;
 try {
     await buildStatement({
         subject: { referenceIdentifier: "https://x.com/alice", entityType: "Person", referenceType: "NetworkResource" },
-        predicate: { referenceIdentifier: "not-a-url", entityType: "Concept", referenceType: "NetworkResource" },
+        property: { referenceIdentifier: "not-a-url", entityType: "DirectionalProperty", referenceType: "NetworkResource" },
         object: { referenceIdentifier: "Alice", entityType: "TextLiteral", referenceType: "TextLiteral" }
     });
     failures += 1;
-    console.error("  ❌ Should have rejected invalid predicate URL");
+    console.error("  ❌ Should have rejected invalid property URL");
 } catch (error) {
     if (error.message?.includes("canonical full URL")) {
-        console.log("  ✅ Correctly rejected invalid predicate URL");
+        console.log("  ✅ Correctly rejected invalid property URL");
     } else {
         failures += 1;
         console.error("  ❌ Wrong error:", error.message);
@@ -218,7 +218,7 @@ checks += 1;
 try {
     await buildStatement({
         subject: { referenceIdentifier: "https://agentcommunity.org/m/example-org", entityType: "Organization", referenceType: "NetworkResource" },
-        predicate: { referenceIdentifier: "https://www.w3.org/2002/07/owl#sameAs", entityType: "Concept", referenceType: "NetworkResource" },
+        property: { referenceIdentifier: "https://www.w3.org/2002/07/owl#sameAs", entityType: "SymmetricProperty", referenceType: "NetworkResource" },
         object: { referenceIdentifier: "https://x.com/example_org", entityType: "NetworkResource", referenceType: "NetworkResource" }
     });
     failures += 1;
@@ -238,7 +238,7 @@ checks += 1;
 try {
     const statement = await buildStatement({
         subject: { referenceIdentifier: "https://agentcommunity.org/m/example-org", entityType: "Organization", referenceType: "NetworkResource" },
-        predicate: { referenceIdentifier: "https://www.w3.org/2002/07/owl#sameAs", entityType: "Concept", referenceType: "NetworkResource" },
+        property: { referenceIdentifier: "https://www.w3.org/2002/07/owl#sameAs", entityType: "SymmetricProperty", referenceType: "NetworkResource" },
         object: { referenceIdentifier: "https://x.com/example_org", entityType: "Organization", referenceType: "NetworkResource" }
     });
     if (!statement.statementFideId) {

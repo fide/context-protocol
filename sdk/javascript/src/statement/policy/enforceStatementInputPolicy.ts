@@ -4,11 +4,11 @@
 import type { StatementInput } from "../types.js";
 import { describeValue } from "../utils.js";
 
-type StatementRole = "subject" | "predicate" | "object";
+type StatementRole = "subject" | "property" | "object";
 type StatementField = "referenceIdentifier" | "entityType" | "referenceType";
 
 /**
- * Assert that a statement role field (`subject`, `predicate`, `object`) is an object.
+ * Assert that a statement role field (`subject`, `property`, `object`) is an object.
  */
 function assertRoleObject(
   input: StatementInput | Record<string, unknown>,
@@ -47,21 +47,21 @@ function assertRoleFieldString(
  * Enforce basic statement input invariants before ID derivation.
  *
  * Validates:
- * - object shape for `subject`, `predicate`, and `object`
+ * - object shape for `subject`, `property`, and `object`
  * - string-typed `referenceIdentifier`, `entityType`, `referenceType` fields
- * - protocol-level predicate type constraints (`Concept` + `NetworkResource`)
+ * - protocol-level property type constraints (`DirectionalProperty` or `SymmetricProperty` + `NetworkResource`)
  *
- * Predicate URL validity/canonicalization is enforced later by
- * `normalizePredicateReferenceIdentifier()` in the statement build path.
+ * Property URL validity/canonicalization is enforced later by
+ * `normalizePropertyReferenceIdentifier()` in the statement build path.
  */
 export function enforceStatementInputPolicy(input: StatementInput): void {
   if (!input || typeof input !== "object") {
     throw new Error(
-      `Invalid statement input: expected object with subject, predicate, and object; got ${describeValue(input)}.`,
+      `Invalid statement input: expected object with subject, property, and object; got ${describeValue(input)}.`,
     );
   }
 
-  const roles: StatementRole[] = ["subject", "predicate", "object"];
+  const roles: StatementRole[] = ["subject", "property", "object"];
   const fields: StatementField[] = ["referenceIdentifier", "entityType", "referenceType"];
 
   for (const role of roles) {
@@ -71,15 +71,15 @@ export function enforceStatementInputPolicy(input: StatementInput): void {
     }
   }
 
-  if (input.predicate.entityType !== "Concept") {
+  if (input.property.entityType !== "DirectionalProperty" && input.property.entityType !== "SymmetricProperty") {
     throw new Error(
-      `Invalid predicate entityType: ${input.predicate.entityType}. Expected Concept.`,
+      `Invalid property entityType: ${input.property.entityType}. Expected DirectionalProperty or SymmetricProperty.`,
     );
   }
 
-  if (input.predicate.referenceType !== "NetworkResource") {
+  if (input.property.referenceType !== "NetworkResource") {
     throw new Error(
-      `Invalid predicate referenceType: ${input.predicate.referenceType}. Expected NetworkResource.`,
+      `Invalid property referenceType: ${input.property.referenceType}. Expected NetworkResource.`,
     );
   }
 }

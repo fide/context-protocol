@@ -1,0 +1,186 @@
+{
+  "$schema": "https://raw.githubusercontent.com/fide/context-protocol/refs/heads/main/spec/v0/examples/example.schema.json",
+  "$id": "https://raw.githubusercontent.com/fide/context-protocol/refs/heads/main/spec/v0/examples/disagreement.json",
+  "title": "Disagreement",
+  "description": "Modeling disagreement by treating the original claim as a Statement and linking a later review action to that claim using standard vocab.",
+  "specVersion": "0",
+  "tags": [
+    "epistemics",
+    "disagreement",
+    "statement",
+    "review"
+  ],
+  "statements": [
+    {
+      "batch_index": 1,
+      "notes": "Base claim: Alice works for Acme Product.",
+      "subject": {
+        "entityType": "Person",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://example.com/people/alice-chen"
+      },
+      "property": {
+        "entityType": "DirectionalProperty",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://schema.org/worksFor"
+      },
+      "object": {
+        "entityType": "Organization",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://example.com/orgs/acme-product"
+      }
+    },
+    {
+      "batch_index": 2,
+      "notes": "Qualify the base claim with provenance from Alice's profile.",
+      "subject": {
+        "entityType": "Statement",
+        "referenceType": "Statement",
+        "referenceIdentifier": "@1"
+      },
+      "property": {
+        "entityType": "DirectionalProperty",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://www.w3.org/ns/prov#wasDerivedFrom"
+      },
+      "object": {
+        "entityType": "CreativeWork",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://example.com/profiles/alice-chen-linkedin"
+      }
+    },
+    {
+      "batch_index": 3,
+      "notes": "A review action evaluates the original claim.",
+      "subject": {
+        "entityType": "Action",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://example.com/reviews/alice-employment-claim-review"
+      },
+      "property": {
+        "entityType": "DirectionalProperty",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://schema.org/name"
+      },
+      "object": {
+        "entityType": "TextLiteral",
+        "referenceType": "TextLiteral",
+        "referenceIdentifier": "Review Alice Employment Claim"
+      }
+    },
+    {
+      "batch_index": 4,
+      "notes": "Classify the action as a review-oriented action.",
+      "subject": {
+        "entityType": "Action",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://example.com/reviews/alice-employment-claim-review"
+      },
+      "property": {
+        "entityType": "DirectionalProperty",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://schema.org/additionalType"
+      },
+      "object": {
+        "entityType": "Concept",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://schema.org/ReviewAction"
+      }
+    },
+    {
+      "batch_index": 5,
+      "notes": "The review action is associated with the reviewer.",
+      "subject": {
+        "entityType": "Action",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://example.com/reviews/alice-employment-claim-review"
+      },
+      "property": {
+        "entityType": "DirectionalProperty",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://www.w3.org/ns/prov#wasAssociatedWith"
+      },
+      "object": {
+        "entityType": "Person",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://example.com/people/bob-martinez"
+      }
+    },
+    {
+      "batch_index": 6,
+      "notes": "Point the review at the original claim statement.",
+      "subject": {
+        "entityType": "Action",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://example.com/reviews/alice-employment-claim-review"
+      },
+      "property": {
+        "entityType": "DirectionalProperty",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://schema.org/object"
+      },
+      "object": {
+        "entityType": "Statement",
+        "referenceType": "Statement",
+        "referenceIdentifier": "@1"
+      }
+    },
+    {
+      "batch_index": 7,
+      "notes": "Generate a review artifact that records disagreement with the original claim.",
+      "subject": {
+        "entityType": "CreativeWork",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://example.com/reviews/alice-employment-review-note"
+      },
+      "property": {
+        "entityType": "DirectionalProperty",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://schema.org/text"
+      },
+      "object": {
+        "entityType": "TextLiteral",
+        "referenceType": "TextLiteral",
+        "referenceIdentifier": "Current HR records indicate Alice no longer works for Acme Product."
+      }
+    },
+    {
+      "batch_index": 8,
+      "notes": "The review action generated the disagreement note.",
+      "subject": {
+        "entityType": "Action",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://example.com/reviews/alice-employment-claim-review"
+      },
+      "property": {
+        "entityType": "DirectionalProperty",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://www.w3.org/ns/prov#generated"
+      },
+      "object": {
+        "entityType": "CreativeWork",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://example.com/reviews/alice-employment-review-note"
+      }
+    },
+    {
+      "batch_index": 9,
+      "notes": "Name the generated disagreement review note.",
+      "subject": {
+        "entityType": "CreativeWork",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://example.com/reviews/alice-employment-review-note"
+      },
+      "property": {
+        "entityType": "DirectionalProperty",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://schema.org/name"
+      },
+      "object": {
+        "entityType": "TextLiteral",
+        "referenceType": "TextLiteral",
+        "referenceIdentifier": "Employment Claim Review Note"
+      }
+    }
+  ]
+}

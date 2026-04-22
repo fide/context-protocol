@@ -1,18 +1,18 @@
 import { FCP_CURIE_PREFIX_IRIS } from "../constants.js";
-import type { CompactPredicateReferenceIdentifierOptions } from "../types.js";
+import type { CompactpropertyReferenceIdentifierOptions } from "../types.js";
 
 /**
- * Compact a full predicate IRI (e.g. `https://schema.org/name`) to CURIE form.
+ * Compact a full property IRI (e.g. `https://schema.org/name`) to CURIE form.
  *
  * Returns the original input unchanged when it does not match a configured prefix.
  *
- * @param referenceIdentifier Predicate reference identifier token.
+ * @param referenceIdentifier Property reference identifier token.
  * @param options Prefix override options.
  * @returns CURIE form or original input.
  */
-export function compactPredicateReferenceIdentifier(
+export function compactpropertyReferenceIdentifier(
   referenceIdentifier: string,
-  options?: CompactPredicateReferenceIdentifierOptions,
+  options?: CompactpropertyReferenceIdentifierOptions,
 ): string {
   const map = {
     ...FCP_CURIE_PREFIX_IRIS,

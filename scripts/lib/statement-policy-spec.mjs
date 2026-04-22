@@ -44,7 +44,7 @@ function validateGuideStatement(triple, path, errors) {
     return;
   }
   validateStatementRole(triple.subject, `${path}.subject`, errors);
-  validateStatementRole(triple.predicate, `${path}.predicate`, errors);
+  validateStatementRole(triple.property, `${path}.property`, errors);
   validateStatementRole(triple.object, `${path}.object`, errors);
 }
 
@@ -100,40 +100,55 @@ export async function loadValidatedStatementPolicySpec(fcpRoot) {
     errors.push(`specDate must match ${schema.properties.specDate.pattern}`);
   }
 
-  if (!isObject(spec.predicateRole)) {
-    errors.push("predicateRole must be an object");
+  if (!isObject(spec.propertyRole)) {
+    errors.push("propertyRole must be an object");
   } else {
-    if (spec.predicateRole.entityType !== "Concept") {
-      errors.push("predicateRole.entityType must equal Concept");
+    if (!Array.isArray(spec.propertyRole.entityTypes) || spec.propertyRole.entityTypes.length === 0) {
+      errors.push("propertyRole.entityTypes must be a non-empty array");
+    } else {
+      const allowed = new Set(["DirectionalProperty", "SymmetricProperty"]);
+      for (const [index, entityType] of spec.propertyRole.entityTypes.entries()) {
+        if (typeof entityType !== "string" || !allowed.has(entityType)) {
+          errors.push(`propertyRole.entityTypes[${index}] must equal DirectionalProperty or SymmetricProperty`);
+        }
+      }
     }
-    if (spec.predicateRole.referenceType !== "NetworkResource") {
-      errors.push("predicateRole.referenceType must equal NetworkResource");
+    if (spec.propertyRole.referenceType !== "NetworkResource") {
+      errors.push("propertyRole.referenceType must equal NetworkResource");
     }
-    if (typeof spec.predicateRole.description !== "string" || spec.predicateRole.description.length === 0) {
-      errors.push("predicateRole.description must be a non-empty string");
+    if (typeof spec.propertyRole.description !== "string" || spec.propertyRole.description.length === 0) {
+      errors.push("propertyRole.description must be a non-empty string");
     }
-    if (typeof spec.predicateRole.path !== "string" || spec.predicateRole.path.length === 0) {
-      errors.push("predicateRole.path must be a non-empty string");
+    if (typeof spec.propertyRole.path !== "string" || spec.propertyRole.path.length === 0) {
+      errors.push("propertyRole.path must be a non-empty string");
     }
   }
 
-  if (!Array.isArray(spec.forbiddenPredicates)) {
-    errors.push("forbiddenPredicates must be an array");
+  if (!Array.isArray(spec.statementNormalizationRules)) {
+    errors.push("statementNormalizationRules must be an array");
   } else {
-    for (const [index, rule] of spec.forbiddenPredicates.entries()) {
-      validateRule(rule, `forbiddenPredicates[${index}]`, errors);
-      if (typeof rule?.predicateIri !== "string" || !rule.predicateIri.startsWith("https://")) {
-        errors.push(`forbiddenPredicates[${index}].predicateIri must be an https URI string`);
+    for (const [index, rule] of spec.statementNormalizationRules.entries()) {
+      validateRule(rule, `statementNormalizationRules[${index}]`, errors);
+    }
+  }
+
+  if (!Array.isArray(spec.forbiddenProperties)) {
+    errors.push("forbiddenProperties must be an array");
+  } else {
+    for (const [index, rule] of spec.forbiddenProperties.entries()) {
+      validateRule(rule, `forbiddenProperties[${index}]`, errors);
+      if (typeof rule?.propertyIri !== "string" || !rule.propertyIri.startsWith("https://")) {
+        errors.push(`forbiddenProperties[${index}].propertyIri must be an https URI string`);
       }
     }
   }
 
-  if (!Array.isArray(spec.typeAssertionPredicates)) {
-    errors.push("typeAssertionPredicates must be an array");
+  if (!Array.isArray(spec.typeAssertionProperties)) {
+    errors.push("typeAssertionProperties must be an array");
   } else {
-    for (const [index, iri] of spec.typeAssertionPredicates.entries()) {
+    for (const [index, iri] of spec.typeAssertionProperties.entries()) {
       if (typeof iri !== "string" || !iri.startsWith("https://")) {
-        errors.push(`typeAssertionPredicates[${index}] must be an https URI string`);
+        errors.push(`typeAssertionProperties[${index}] must be an https URI string`);
       }
     }
   }

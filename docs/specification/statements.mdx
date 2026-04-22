@@ -13,13 +13,13 @@ Statements are how entity relationships are described. You can think of them as 
 
 The entity that the statement is about.
 
-## Predicate [#predicate]
+## Property [#property]
 
-The relationship [`Concept`](/vocabulary/definitions/concept) that gives the statement its meaning.
+The relationship entity that gives the statement its meaning.
 
 ### Requirements [#requirements]
 
-- MUST use the [Entity Type](/id/specification/syntax#entity-type) [`Concept`](/vocabulary/definitions/concept).
+- MUST use the [Entity Type](/id/specification/syntax#entity-type) [`DirectionalProperty`](/vocabulary/definitions/directional-property) or [`SymmetricProperty`](/vocabulary/definitions/symmetric-property).
 - MUST use the [Reference Type](/id/specification/syntax#reference-type) [`NetworkResource`](/vocabulary/definitions/network-resource).
 
 ### Restrictions [#restrictions]
@@ -29,14 +29,18 @@ The relationship [`Concept`](/vocabulary/definitions/concept) that gives the sta
 
 ## Object [#object]
 
-The entity related to the subject by the predicate.
+The entity related to the subject by the property.
+
+## Normalization [#normalization]
+
+For `SymmetricProperty` statements, `subjectFideId` and `objectFideId` MUST be ordered canonically before constructing the statement reference by lexicographic comparison of their Fide ID strings.
 
 ---
 
 ## Statement Restrictions [#statement-restrictions]
 
 <details>
-<summary>MUST NOT use a Statement with <a href="/context-protocol/specification/statements#predicate">Predicate</a> <code>rdf:type</code> or <code>schema:additionalType</code> with an <a href="/context-protocol/specification/statements#object">Object</a> type already directly encoded by the <a href="/context-protocol/specification/statements#subject">Subject</a> <a href="/id/specification/syntax#entity-type">Entity Type</a>.</summary>
+<summary>MUST NOT use a Statement with <a href="/context-protocol/specification/statements#property">Property</a> <code>rdf:type</code> or <code>schema:additionalType</code> with an <a href="/context-protocol/specification/statements#object">Object</a> type already directly encoded by the <a href="/context-protocol/specification/statements#subject">Subject</a> <a href="/id/specification/syntax#entity-type">Entity Type</a>.</summary>
 
 | Subject Entity Type | Object Type Already Encoded |
 | :--- | :--- |
@@ -71,10 +75,5 @@ FCP supports two distinct ways to model time, and producers SHOULD choose the on
   Examples: an [`Event`](/vocabulary/definitions/event), an [`Action`](/vocabulary/definitions/action), or another temporally bounded entity with properties such as `schema:startDate` or `schema:endDate`.
 - Use time on a `Statement` when time qualifies the applicability, validity, or truth interval of the claim.
   Examples: `schema:validFrom` or `schema:validThrough` attached to a `statementFideId`.
-
-In short:
-
-- entity time describes when the thing happened or existed
-- statement time describes when the claim holds
 
 Producers SHOULD NOT redundantly model the same temporal boundary on both the entity and the statement unless they intentionally need both layers and the distinction is clear.

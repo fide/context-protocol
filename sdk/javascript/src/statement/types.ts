@@ -4,8 +4,8 @@
 import type {
   FideId,
   FideEntityType,
-  FideStatementPredicateEntityType,
-  FideStatementPredicateReferenceType,
+  FideStatementPropertyEntityType,
+  FideStatementPropertyReferenceType,
 } from "@fide-work/id";
 
 /**
@@ -18,14 +18,14 @@ export interface StatementInput {
   /** Subject - reference identifier with entity type and reference type */
   subject: { referenceIdentifier: string; entityType: FideEntityType; referenceType: FideEntityType };
   /**
-   * Predicate - explicit reference identifier with entity type and reference type.
+   * Property - explicit reference identifier with entity type and reference type.
    * `referenceIdentifier` must be a canonical full URL (https://...).
-   * Entity type must be Concept.
+   * Entity type must be DirectionalProperty or SymmetricProperty.
    */
-  predicate: {
+  property: {
     referenceIdentifier: string;
-    entityType: FideStatementPredicateEntityType;
-    referenceType: FideStatementPredicateReferenceType;
+    entityType: FideStatementPropertyEntityType;
+    referenceType: FideStatementPropertyReferenceType;
   };
   /** Object - reference identifier with entity type and reference type */
   object: { referenceIdentifier: string; entityType: FideEntityType; referenceType: FideEntityType };
@@ -37,7 +37,7 @@ export interface StatementInput {
 export interface StatementBuildOptions {
   /**
    * If true, normalize URL-like reference identifiers before hashing.
-   * Predicate URL policy checks are always enforced regardless of this option.
+   * Property URL policy checks are always enforced regardless of this option.
    * Default is false.
    */
   normalizeReferenceIdentifier?: boolean;
@@ -57,10 +57,10 @@ export interface Statement {
   subjectFideId: FideId;
   /** Subject reference identifier (required - cannot be derived from Fide ID) */
   subjectReferenceIdentifier: string;
-  /** Predicate Fide ID */
-  predicateFideId: FideId;
-  /** Predicate reference identifier (required - cannot be derived from Fide ID) */
-  predicateReferenceIdentifier: string;
+  /** Property Fide ID */
+  propertyFideId: FideId;
+  /** Property reference identifier (required - cannot be derived from Fide ID) */
+  propertyReferenceIdentifier: string;
   /** Object Fide ID */
   objectFideId: FideId;
   /** Object reference identifier (required - cannot be derived from Fide ID) */

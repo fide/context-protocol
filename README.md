@@ -2,7 +2,7 @@
 
 Canonical specification and SDK for the Fide Context Protocol.
 
-The Fide Context Protocol defines interoperable statement structures for graph-based world models across systems. It depends on [Fide ID](https://github.com/fide/id) for identifier rules and on the [Fide Vocabulary](https://github.com/fide/vocabulary) for entity and predicate typing semantics.
+The Fide Context Protocol defines interoperable statement structures for graph-based world models across systems. It depends on [Fide ID](https://github.com/fide/id) for identifier rules and on the [Fide Vocabulary](https://github.com/fide/vocabulary) for entity and property typing semantics.
 
 Public docs are published at:
 
@@ -16,9 +16,9 @@ Public docs are published at:
 
 ## Generate Protocol Artifacts
 
-Predicate prefix mappings and JS SDK constants are generated from:
+Property prefix mappings and JS SDK constants are generated from:
 
-- `spec/v0/predicate-prefixes.json`
+- `spec/v0/property-prefixes.json`
 
 Run from repo root:
 

@@ -1,15 +1,15 @@
 /**
- * Predicate vocabulary shorthand helper types.
+ * Property vocabulary shorthand helper types.
  */
 
-export interface ExpandPredicateReferenceIdentifierOptions {
+export interface ExpandpropertyReferenceIdentifierOptions {
   /**
    * Additional/override prefix mappings.
    */
   prefixes?: Record<string, string>;
 }
 
-export interface CompactPredicateReferenceIdentifierOptions {
+export interface CompactpropertyReferenceIdentifierOptions {
   /**
    * Additional/override prefix mappings.
    */

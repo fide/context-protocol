@@ -12,7 +12,7 @@ export {
   calculateStatementFideId,
   parseFideId,
   normalizeReferenceIdentifier,
-  normalizePredicateReferenceIdentifier,
+  normalizePropertyReferenceIdentifier,
   FIDE_NAMESPACE_URL as FCP_NAMESPACE_URL,
   FIDE_SPEC_VERSION as FCP_SPEC_VERSION,
   FIDE_SPEC_DATE as FCP_SPEC_DATE,
@@ -26,11 +26,11 @@ export {
 
 export type {
   FideEntityType,
-  FideStatementPredicateEntityType,
-  FideStatementPredicateReferenceType,
+  FideStatementPropertyEntityType,
+  FideStatementPropertyReferenceType,
   FideIdCalculationOptions,
   NormalizeReferenceIdentifierOptions,
-  NormalizePredicateReferenceIdentifierOptions,
+  NormalizePropertyReferenceIdentifierOptions,
   FideEntityTypeChar,
   FideId,
   FideFingerprint,
@@ -54,14 +54,14 @@ export type {
 } from "@fide-work/id";
 
 export {
-  compactPredicateReferenceIdentifier,
-  expandPredicateReferenceIdentifier,
+  compactpropertyReferenceIdentifier,
+  expandpropertyReferenceIdentifier,
   STANDARD_CURIE_PREFIXES,
 } from "./predicate-vocabulary/index.js";
 
 export type {
-  CompactPredicateReferenceIdentifierOptions,
-  ExpandPredicateReferenceIdentifierOptions,
+  CompactpropertyReferenceIdentifierOptions,
+  ExpandpropertyReferenceIdentifierOptions,
 } from "./predicate-vocabulary/index.js";
 
 export {
@@ -82,16 +82,25 @@ export {
 } from "./spec/index.js";
 
 export type {
-  FcpPredicateRole,
-  FcpForbiddenPredicateRule,
+  FcpPropertyRole,
+  FcpForbiddenPropertyRule,
   FcpStatementGuideExample,
 } from "./spec/index.js";
 
 // Policies (used by downstream SDKs/CLIs)
-export { enforceStatementPredicateBatchPolicy } from "./statement/policy/enforceStatementPredicateBatchPolicy.js";
+export { enforceStatementPropertyBatchPolicy } from "./statement/policy/enforceStatementPredicateBatchPolicy.js";
 export {
   STATEMENT_GUIDE_EXAMPLES,
 } from "./statement/policy/statementPredicatePolicyConstants.js";
 export type {
   StatementGuideExample,
 } from "./statement/policy/statementPredicatePolicyConstants.js";
+
+// Examples
+export { FCP_EXAMPLES } from "./examples/index.js";
+export { resolveExampleBatch } from "./examples/resolveExampleBatch.js";
+export type {
+  FcpExample,
+  FcpExampleStatement,
+  BatchRef,
+} from "./examples/types.js";

@@ -17,7 +17,7 @@ The repository is currently in alpha.
 This repository is responsible for:
 
 - statement structure and protocol rules
-- predicate and statement validation behavior
+- property and statement validation behavior
 - protocol schemas and generated interoperability artifacts
 - JavaScript SDK behavior for working with FCP statements
 - generated SDK reference docs

@@ -14,8 +14,8 @@
         "referenceType": "NetworkResource",
         "referenceIdentifier": "https://example.com/orgs/acme-corp"
       },
-      "predicate": {
-        "entityType": "Concept",
+      "property": {
+        "entityType": "DirectionalProperty",
         "referenceType": "NetworkResource",
         "referenceIdentifier": "https://schema.org/name"
       },
@@ -33,8 +33,8 @@
         "referenceType": "NetworkResource",
         "referenceIdentifier": "https://example.com/orgs/widgets-inc"
       },
-      "predicate": {
-        "entityType": "Concept",
+      "property": {
+        "entityType": "DirectionalProperty",
         "referenceType": "NetworkResource",
         "referenceIdentifier": "https://schema.org/name"
       },
@@ -52,8 +52,8 @@
         "referenceType": "NetworkResource",
         "referenceIdentifier": "https://example.com/engagements/acme-widgets-2026"
       },
-      "predicate": {
-        "entityType": "Concept",
+      "property": {
+        "entityType": "DirectionalProperty",
         "referenceType": "NetworkResource",
         "referenceIdentifier": "https://schema.org/agent"
       },
@@ -71,8 +71,8 @@
         "referenceType": "NetworkResource",
         "referenceIdentifier": "https://example.com/engagements/acme-widgets-2026"
       },
-      "predicate": {
-        "entityType": "Concept",
+      "property": {
+        "entityType": "DirectionalProperty",
         "referenceType": "NetworkResource",
         "referenceIdentifier": "https://schema.org/participant"
       },
@@ -90,8 +90,8 @@
         "referenceType": "NetworkResource",
         "referenceIdentifier": "https://example.com/engagements/acme-widgets-2026#budget-1"
       },
-      "predicate": {
-        "entityType": "Concept",
+      "property": {
+        "entityType": "DirectionalProperty",
         "referenceType": "NetworkResource",
         "referenceIdentifier": "https://schema.org/agent"
       },
@@ -109,8 +109,8 @@
         "referenceType": "NetworkResource",
         "referenceIdentifier": "https://example.com/engagements/acme-widgets-2026#budget-1-cap"
       },
-      "predicate": {
-        "entityType": "Concept",
+      "property": {
+        "entityType": "DirectionalProperty",
         "referenceType": "NetworkResource",
         "referenceIdentifier": "https://schema.org/maxValue"
       },
@@ -128,8 +128,8 @@
         "referenceType": "NetworkResource",
         "referenceIdentifier": "https://example.com/engagements/acme-widgets-2026#budget-1-cap"
       },
-      "predicate": {
-        "entityType": "Concept",
+      "property": {
+        "entityType": "DirectionalProperty",
         "referenceType": "NetworkResource",
         "referenceIdentifier": "https://schema.org/priceCurrency"
       },
@@ -147,8 +147,8 @@
         "referenceType": "NetworkResource",
         "referenceIdentifier": "https://example.com/engagements/acme-widgets-2026#budget-1"
       },
-      "predicate": {
-        "entityType": "Concept",
+      "property": {
+        "entityType": "DirectionalProperty",
         "referenceType": "NetworkResource",
         "referenceIdentifier": "https://schema.org/actionStatus"
       },

@@ -1,6 +1,6 @@
 /**
- * Prefix map for expanding standards CURIEs to canonical predicate IRIs.
- * Kept in sync with spec/v0/predicate-prefixes.json (prefixes object).
+ * Prefix map for expanding standards CURIEs to canonical property IRIs.
+ * Kept in sync with spec/v0/property-prefixes.json (prefixes object).
  */
 export const FCP_CURIE_PREFIX_IRIS: Record<string, string> = {
   dcterms: "https://purl.org/dc/terms/",

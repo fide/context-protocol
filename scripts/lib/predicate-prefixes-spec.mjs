@@ -6,13 +6,13 @@ function isObject(value) {
 }
 
 function fail(errors) {
-  const message = ["Predicate prefix spec validation failed:", ...errors.map((e) => `- ${e}`)].join("\n");
+  const message = ["Property prefix spec validation failed:", ...errors.map((e) => `- ${e}`)].join("\n");
   throw new Error(message);
 }
 
-export async function loadValidatedPredicatePrefixSpec(fcpRoot) {
-  const specPath = resolve(fcpRoot, "spec/v0/predicate-prefixes.json");
-  const schemaPath = resolve(fcpRoot, "spec/v0/predicate-prefixes.schema.json");
+export async function loadValidatedPropertyPrefixSpec(fcpRoot) {
+  const specPath = resolve(fcpRoot, "spec/v0/property-prefixes.json");
+  const schemaPath = resolve(fcpRoot, "spec/v0/property-prefixes.schema.json");
 
   const spec = JSON.parse(await readFile(specPath, "utf8"));
   const schema = JSON.parse(await readFile(schemaPath, "utf8"));

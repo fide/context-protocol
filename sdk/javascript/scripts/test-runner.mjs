@@ -9,7 +9,7 @@ const packageRoot = resolve(here, "..");
 const verbose = process.argv.includes("--verbose");
 
 const testFiles = [
-    "src/predicate-vocabulary/helpers.test.mjs",
+    "src/property-vocabulary/helpers.test.mjs",
     "src/statement/build.test.mjs",
 ];
 

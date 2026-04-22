@@ -1,0 +1,357 @@
+{
+  "$schema": "https://raw.githubusercontent.com/fide/context-protocol/refs/heads/main/spec/v0/examples/example.schema.json",
+  "$id": "https://raw.githubusercontent.com/fide/context-protocol/refs/heads/main/spec/v0/examples/decision.json",
+  "title": "Decision",
+  "description": "Modeling a decision as an Action/PROV activity that considers alternatives, selects an outcome, uses inputs, involves agents, and generates an output artifact without introducing custom Fide vocabulary.",
+  "specVersion": "0",
+  "tags": [
+    "decision",
+    "action",
+    "provenance",
+    "planning"
+  ],
+  "statements": [
+    {
+      "batch_index": 1,
+      "notes": "Name the work item under consideration. It is modeled as a CreativeWork container without refining it to schema:Project.",
+      "subject": {
+        "entityType": "CreativeWork",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://example.com/projects/mobile-app-launch"
+      },
+      "property": {
+        "entityType": "DirectionalProperty",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://schema.org/name"
+      },
+      "object": {
+        "entityType": "TextLiteral",
+        "referenceType": "TextLiteral",
+        "referenceIdentifier": "Mobile App Launch"
+      }
+    },
+    {
+      "batch_index": 2,
+      "notes": "The decision process itself is modeled as an Action. Action is the Fide entity type that aligns with schema:Action and prov:Activity.",
+      "subject": {
+        "entityType": "Action",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://example.com/decisions/mobile-app-launch/approve-v1"
+      },
+      "property": {
+        "entityType": "DirectionalProperty",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://schema.org/name"
+      },
+      "object": {
+        "entityType": "TextLiteral",
+        "referenceType": "TextLiteral",
+        "referenceIdentifier": "Approve Mobile App Launch"
+      }
+    },
+    {
+      "batch_index": 3,
+      "notes": "Further classify the decision action as a schema:PlanAction using schema:additionalType.",
+      "subject": {
+        "entityType": "Action",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://example.com/decisions/mobile-app-launch/approve-v1"
+      },
+      "property": {
+        "entityType": "DirectionalProperty",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://schema.org/additionalType"
+      },
+      "object": {
+        "entityType": "Concept",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://schema.org/PlanAction"
+      }
+    },
+    {
+      "batch_index": 4,
+      "notes": "Associate the decision action with the organization responsible for it.",
+      "subject": {
+        "entityType": "Action",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://example.com/decisions/mobile-app-launch/approve-v1"
+      },
+      "property": {
+        "entityType": "DirectionalProperty",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://www.w3.org/ns/prov#wasAssociatedWith"
+      },
+      "object": {
+        "entityType": "Organization",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://example.com/orgs/acme-product"
+      }
+    },
+    {
+      "batch_index": 5,
+      "notes": "Also model the human participant in the decision process.",
+      "subject": {
+        "entityType": "Action",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://example.com/decisions/mobile-app-launch/approve-v1"
+      },
+      "property": {
+        "entityType": "DirectionalProperty",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://schema.org/participant"
+      },
+      "object": {
+        "entityType": "Person",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://example.com/people/alice-chen"
+      }
+    },
+    {
+      "batch_index": 6,
+      "notes": "Point the decision action at the work item it is deciding about.",
+      "subject": {
+        "entityType": "Action",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://example.com/decisions/mobile-app-launch/approve-v1"
+      },
+      "property": {
+        "entityType": "DirectionalProperty",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://schema.org/object"
+      },
+      "object": {
+        "entityType": "CreativeWork",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://example.com/projects/mobile-app-launch"
+      }
+    },
+    {
+      "batch_index": 7,
+      "notes": "Use PROV to capture an input used during the decision process, such as a forecast document.",
+      "subject": {
+        "entityType": "Action",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://example.com/decisions/mobile-app-launch/approve-v1"
+      },
+      "property": {
+        "entityType": "DirectionalProperty",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://www.w3.org/ns/prov#used"
+      },
+      "object": {
+        "entityType": "CreativeWork",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://example.com/docs/mobile-launch-forecast"
+      }
+    },
+    {
+      "batch_index": 8,
+      "notes": "Capture a second input used in the decision process, such as a risk memo.",
+      "subject": {
+        "entityType": "Action",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://example.com/decisions/mobile-app-launch/approve-v1"
+      },
+      "property": {
+        "entityType": "DirectionalProperty",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://www.w3.org/ns/prov#used"
+      },
+      "object": {
+        "entityType": "CreativeWork",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://example.com/docs/mobile-launch-risk-review"
+      }
+    },
+    {
+      "batch_index": 9,
+      "notes": "Name the resulting approval record generated by the decision.",
+      "subject": {
+        "entityType": "CreativeWork",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://example.com/docs/mobile-launch-approval"
+      },
+      "property": {
+        "entityType": "DirectionalProperty",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://schema.org/name"
+      },
+      "object": {
+        "entityType": "TextLiteral",
+        "referenceType": "TextLiteral",
+        "referenceIdentifier": "Mobile Launch Approval Memo"
+      }
+    },
+    {
+      "batch_index": 10,
+      "notes": "Use PROV to show that the decision action generated the approval record.",
+      "subject": {
+        "entityType": "Action",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://example.com/decisions/mobile-app-launch/approve-v1"
+      },
+      "property": {
+        "entityType": "DirectionalProperty",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://www.w3.org/ns/prov#generated"
+      },
+      "object": {
+        "entityType": "CreativeWork",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://example.com/docs/mobile-launch-approval"
+      }
+    },
+    {
+      "batch_index": 11,
+      "notes": "Mark the decision action as completed.",
+      "subject": {
+        "entityType": "Action",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://example.com/decisions/mobile-app-launch/approve-v1"
+      },
+      "property": {
+        "entityType": "DirectionalProperty",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://schema.org/actionStatus"
+      },
+      "object": {
+        "entityType": "NetworkResource",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://schema.org/CompletedActionStatus"
+      }
+    },
+    {
+      "batch_index": 12,
+      "notes": "Statement-about-statement: record where the generated-output assertion was derived from, such as meeting minutes.",
+      "subject": {
+        "entityType": "Statement",
+        "referenceType": "Statement",
+        "referenceIdentifier": "@10"
+      },
+      "property": {
+        "entityType": "DirectionalProperty",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://www.w3.org/ns/prov#wasDerivedFrom"
+      },
+      "object": {
+        "entityType": "CreativeWork",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://example.com/meetings/mobile-launch-steering-2026-04-10"
+      }
+    },
+    {
+      "batch_index": 13,
+      "notes": "Define the first alternative considered in the decision.",
+      "subject": {
+        "entityType": "CreativeWork",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://example.com/options/launch-now"
+      },
+      "property": {
+        "entityType": "DirectionalProperty",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://schema.org/name"
+      },
+      "object": {
+        "entityType": "TextLiteral",
+        "referenceType": "TextLiteral",
+        "referenceIdentifier": "Launch Immediately"
+      }
+    },
+    {
+      "batch_index": 14,
+      "notes": "Define the second alternative considered in the decision.",
+      "subject": {
+        "entityType": "CreativeWork",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://example.com/options/delay-q3"
+      },
+      "property": {
+        "entityType": "DirectionalProperty",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://schema.org/name"
+      },
+      "object": {
+        "entityType": "TextLiteral",
+        "referenceType": "TextLiteral",
+        "referenceIdentifier": "Delay to Q3"
+      }
+    },
+    {
+      "batch_index": 15,
+      "notes": "Link the decision action to the first considered alternative using schema:actionOption.",
+      "subject": {
+        "entityType": "Action",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://example.com/decisions/mobile-app-launch/approve-v1"
+      },
+      "property": {
+        "entityType": "DirectionalProperty",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://schema.org/actionOption"
+      },
+      "object": {
+        "entityType": "CreativeWork",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://example.com/options/launch-now"
+      }
+    },
+    {
+      "batch_index": 16,
+      "notes": "Link the decision action to the second considered alternative.",
+      "subject": {
+        "entityType": "Action",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://example.com/decisions/mobile-app-launch/approve-v1"
+      },
+      "property": {
+        "entityType": "DirectionalProperty",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://schema.org/actionOption"
+      },
+      "object": {
+        "entityType": "CreativeWork",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://example.com/options/delay-q3"
+      }
+    },
+    {
+      "batch_index": 17,
+      "notes": "Explicitly identify the selected alternative using schema:result.",
+      "subject": {
+        "entityType": "Action",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://example.com/decisions/mobile-app-launch/approve-v1"
+      },
+      "property": {
+        "entityType": "DirectionalProperty",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://schema.org/result"
+      },
+      "object": {
+        "entityType": "CreativeWork",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://example.com/options/launch-now"
+      }
+    },
+    {
+      "batch_index": 18,
+      "notes": "Qualify the selected-result statement with provenance from meeting minutes.",
+      "subject": {
+        "entityType": "Statement",
+        "referenceType": "Statement",
+        "referenceIdentifier": "@17"
+      },
+      "property": {
+        "entityType": "DirectionalProperty",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://www.w3.org/ns/prov#wasDerivedFrom"
+      },
+      "object": {
+        "entityType": "CreativeWork",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://example.com/meetings/mobile-launch-steering-2026-04-10"
+      }
+    }
+  ]
+}

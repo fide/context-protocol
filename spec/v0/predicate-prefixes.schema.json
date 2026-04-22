@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://fide.work/context-protocol/v0/predicate-prefixes.schema.json",
-  "title": "Fide Context Protocol Predicate Prefixes v0",
+  "$id": "https://fide.work/context-protocol/v0/property-prefixes.schema.json",
+  "title": "Fide Context Protocol Property Prefixes v0",
   "type": "object",
   "additionalProperties": false,
   "required": [

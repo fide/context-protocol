@@ -1,0 +1,276 @@
+{
+  "$schema": "https://raw.githubusercontent.com/fide/context-protocol/refs/heads/main/spec/v0/examples/example.schema.json",
+  "$id": "https://raw.githubusercontent.com/fide/context-protocol/refs/heads/main/spec/v0/examples/planning.json",
+  "title": "Planning",
+  "description": "Modeling work containers, tasks, ownership, status, and dependencies using existing vocabulary and current Fide entity types without relying on schema:Project.",
+  "specVersion": "0",
+  "tags": ["planning", "project", "task", "dependency"],
+  "statements": [
+    {
+      "batch_index": 1,
+      "notes": "Name the work container. It is kept as a CreativeWork container rather than refined to schema:Project.",
+      "subject": {
+        "entityType": "CreativeWork",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://example.com/projects/customer-portal"
+      },
+      "property": {
+        "entityType": "DirectionalProperty",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://schema.org/name"
+      },
+      "object": {
+        "entityType": "TextLiteral",
+        "referenceType": "TextLiteral",
+        "referenceIdentifier": "Customer Portal Refresh"
+      }
+    },
+    {
+      "batch_index": 2,
+      "notes": "Name the first planned task.",
+      "subject": {
+        "entityType": "Action",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://example.com/tasks/customer-portal/design"
+      },
+      "property": {
+        "entityType": "DirectionalProperty",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://schema.org/name"
+      },
+      "object": {
+        "entityType": "TextLiteral",
+        "referenceType": "TextLiteral",
+        "referenceIdentifier": "Design New Portal Navigation"
+      }
+    },
+    {
+      "batch_index": 3,
+      "notes": "Refine the task into a schema:PlanAction using schema:additionalType.",
+      "subject": {
+        "entityType": "Action",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://example.com/tasks/customer-portal/design"
+      },
+      "property": {
+        "entityType": "DirectionalProperty",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://schema.org/additionalType"
+      },
+      "object": {
+        "entityType": "Concept",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://schema.org/PlanAction"
+      }
+    },
+    {
+      "batch_index": 4,
+      "notes": "The work container has this task as a part. hasPart is the canonical authored direction for part-whole relationships.",
+      "subject": {
+        "entityType": "CreativeWork",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://example.com/projects/customer-portal"
+      },
+      "property": {
+        "entityType": "DirectionalProperty",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://schema.org/hasPart"
+      },
+      "object": {
+        "entityType": "Action",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://example.com/tasks/customer-portal/design"
+      }
+    },
+    {
+      "batch_index": 5,
+      "notes": "Assign an owner to the task using schema:agent.",
+      "subject": {
+        "entityType": "Action",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://example.com/tasks/customer-portal/design"
+      },
+      "property": {
+        "entityType": "DirectionalProperty",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://schema.org/agent"
+      },
+      "object": {
+        "entityType": "Person",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://example.com/people/alice-chen"
+      }
+    },
+    {
+      "batch_index": 6,
+      "notes": "Mark the task as actively in progress.",
+      "subject": {
+        "entityType": "Action",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://example.com/tasks/customer-portal/design"
+      },
+      "property": {
+        "entityType": "DirectionalProperty",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://schema.org/actionStatus"
+      },
+      "object": {
+        "entityType": "NetworkResource",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://schema.org/ActiveActionStatus"
+      }
+    },
+    {
+      "batch_index": 7,
+      "notes": "Name the second planned task.",
+      "subject": {
+        "entityType": "Action",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://example.com/tasks/customer-portal/implement"
+      },
+      "property": {
+        "entityType": "DirectionalProperty",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://schema.org/name"
+      },
+      "object": {
+        "entityType": "TextLiteral",
+        "referenceType": "TextLiteral",
+        "referenceIdentifier": "Implement Portal Navigation"
+      }
+    },
+    {
+      "batch_index": 8,
+      "notes": "Refine the second task into a schema:PlanAction using schema:additionalType.",
+      "subject": {
+        "entityType": "Action",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://example.com/tasks/customer-portal/implement"
+      },
+      "property": {
+        "entityType": "DirectionalProperty",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://schema.org/additionalType"
+      },
+      "object": {
+        "entityType": "Concept",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://schema.org/PlanAction"
+      }
+    },
+    {
+      "batch_index": 9,
+      "notes": "The work container also has the implementation task as a part.",
+      "subject": {
+        "entityType": "CreativeWork",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://example.com/projects/customer-portal"
+      },
+      "property": {
+        "entityType": "DirectionalProperty",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://schema.org/hasPart"
+      },
+      "object": {
+        "entityType": "Action",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://example.com/tasks/customer-portal/implement"
+      }
+    },
+    {
+      "batch_index": 10,
+      "notes": "Assign the implementation task to a different owner.",
+      "subject": {
+        "entityType": "Action",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://example.com/tasks/customer-portal/implement"
+      },
+      "property": {
+        "entityType": "DirectionalProperty",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://schema.org/agent"
+      },
+      "object": {
+        "entityType": "Person",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://example.com/people/bob-martinez"
+      }
+    },
+    {
+      "batch_index": 11,
+      "notes": "Mark the implementation task as potential because it has not started yet.",
+      "subject": {
+        "entityType": "Action",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://example.com/tasks/customer-portal/implement"
+      },
+      "property": {
+        "entityType": "DirectionalProperty",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://schema.org/actionStatus"
+      },
+      "object": {
+        "entityType": "NetworkResource",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://schema.org/PotentialActionStatus"
+      }
+    },
+    {
+      "batch_index": 12,
+      "notes": "Model a dependency by saying the implementation task requires the design task. dcterms:requires is used here as an existing external property instead of inventing a custom one.",
+      "subject": {
+        "entityType": "Action",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://example.com/tasks/customer-portal/implement"
+      },
+      "property": {
+        "entityType": "DirectionalProperty",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://purl.org/dc/terms/requires"
+      },
+      "object": {
+        "entityType": "Action",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://example.com/tasks/customer-portal/design"
+      }
+    },
+    {
+      "batch_index": 13,
+      "notes": "Attach a target deliverable to the implementation task.",
+      "subject": {
+        "entityType": "Action",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://example.com/tasks/customer-portal/implement"
+      },
+      "property": {
+        "entityType": "DirectionalProperty",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://schema.org/object"
+      },
+      "object": {
+        "entityType": "CreativeWork",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://example.com/designs/customer-portal-nav-spec"
+      }
+    },
+    {
+      "batch_index": 14,
+      "notes": "Statement-about-statement: qualify the dependency with provenance from the planning doc that established it.",
+      "subject": {
+        "entityType": "Statement",
+        "referenceType": "Statement",
+        "referenceIdentifier": "@12"
+      },
+      "property": {
+        "entityType": "DirectionalProperty",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://www.w3.org/ns/prov#wasDerivedFrom"
+      },
+      "object": {
+        "entityType": "CreativeWork",
+        "referenceType": "NetworkResource",
+        "referenceIdentifier": "https://example.com/plans/customer-portal-q2-plan"
+      }
+    }
+  ]
+}

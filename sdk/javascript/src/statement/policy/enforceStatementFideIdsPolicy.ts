@@ -1,5 +1,5 @@
 /**
- * Enforce statement ID policy after deriving subject/predicate/object Fide IDs.
+ * Enforce statement ID policy after deriving subject/property/object Fide IDs.
  */
 import { assertFideId, parseFideId } from "@fide-work/id";
 
@@ -27,12 +27,12 @@ function assertRoleFideIdPolicy(fideId: string, role: "subject" | "object"): voi
 /**
  * Enforce post-derivation statement ID invariants.
  *
- * Predicate ID policy is enforced earlier through input constraints; this
+ * Property ID policy is enforced earlier through input constraints; this
  * function keeps subject/object Statement-reference-type restrictions centralized.
  */
 export function enforceStatementFideIdsPolicy(
   subjectFideId: string,
-  predicateFideId: string,
+  propertyFideId: string,
   objectFideId: string
 ): void {
   assertRoleFideIdPolicy(subjectFideId, "subject");

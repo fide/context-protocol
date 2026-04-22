@@ -10,9 +10,10 @@
     "namespaceUrl",
     "specVersion",
     "specDate",
-    "predicateRole",
-    "forbiddenPredicates",
-    "typeAssertionPredicates",
+    "propertyRole",
+    "statementNormalizationRules",
+    "forbiddenProperties",
+    "typeAssertionProperties",
     "guideExamples"
   ],
   "properties": {
@@ -31,16 +32,22 @@
       "type": "string",
       "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
     },
-    "predicateRole": {
-      "$ref": "#/$defs/predicateRole"
+    "propertyRole": {
+      "$ref": "#/$defs/propertyRole"
     },
-    "forbiddenPredicates": {
+    "statementNormalizationRules": {
       "type": "array",
       "items": {
-        "$ref": "#/$defs/ruleWithPredicate"
+        "$ref": "#/$defs/statementNormalizationRule"
       }
     },
-    "typeAssertionPredicates": {
+    "forbiddenProperties": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/ruleWithProperty"
+      }
+    },
+    "typeAssertionProperties": {
       "type": "array",
       "items": {
         "type": "string",
@@ -78,12 +85,12 @@
     "guideStatement": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["subject", "predicate", "object"],
+      "required": ["subject", "property", "object"],
       "properties": {
         "subject": {
           "$ref": "#/$defs/statementRole"
         },
-        "predicate": {
+        "property": {
           "$ref": "#/$defs/statementRole"
         },
         "object": {
@@ -119,16 +126,16 @@
         }
       }
     },
-    "ruleWithPredicate": {
+    "ruleWithProperty": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["id", "predicateIri", "description", "path"],
+      "required": ["id", "propertyIri", "description", "path"],
       "properties": {
         "id": {
           "type": "string",
           "minLength": 1
         },
-        "predicateIri": {
+        "propertyIri": {
           "type": "string",
           "format": "uri",
           "pattern": "^https://"
@@ -143,16 +150,43 @@
         }
       }
     },
-    "predicateRole": {
+    "propertyRole": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["entityType", "referenceType", "description", "path"],
+      "required": ["entityTypes", "referenceType", "description", "path"],
       "properties": {
-        "entityType": {
-          "const": "Concept"
+        "entityTypes": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "DirectionalProperty",
+              "SymmetricProperty"
+            ]
+          }
         },
         "referenceType": {
           "const": "NetworkResource"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "path": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "statementNormalizationRule": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "description", "path"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
         },
         "description": {
           "type": "string",
